@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion O2C App - Meru Pitch Deck</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf2 100%); /* Softer gradient */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 3rem; /* More top padding */
+            padding-bottom: 3rem; /* More bottom padding */
+            padding-left: 1rem;
+            padding-right: 1rem;
+            color: #334155; /* Slate 700 for general text */
+        }
+        .section-card {
+            background-color: #ffffff;
+            border-radius: 1.75rem; /* More rounded */
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08), 0 5px 15px -5px rgba(0, 0, 0, 0.03); /* Softer, deeper shadow */
+            padding: 3rem; /* Increased padding for more breathing room */
+            margin-bottom: 3.5rem; /* More space between sections */
+            width: 100%;
+            max-width: 6xl;
+            border: 1px solid #e2e8f0; /* Subtle border */
+        }
+        /* Custom style for the slightly darker overlook section */
+        .overlook-section-card {
+            background-color: #fcfcfc; /* Very slightly darker white */
+            border: 1px solid #f0f4f8; /* Softer border */
+        }
+        .checkmark-icon {
+            display: inline-block;
+            width: 1.35rem; /* Slightly larger */
+            height: 1.35rem; /* Slightly larger */
+            background-color: #059669; /* Emerald 600 */
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.6rem; /* Slightly more space */
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(5, 150, 105, 0.3); /* Subtle shadow for icon */
+        }
+        .checkmark-icon svg {
+            fill: none;
+            stroke: white;
+            stroke-width: 2.5; /* Thicker stroke */
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        /* Ensure canvas is responsive */
+        #marketTrendChart {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Custom list style for pain points */
+        .pain-point-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .pain-point-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2.5rem; /* More space between items */
+        }
+        .pain-point-item:last-child {
+            margin-bottom: 0;
+        }
+        .pain-point-image-container {
+            flex-shrink: 0;
+            width: 70px; /* Slightly smaller number box */
+            height: 70px; /* Slightly smaller number box */
+            margin-right: 2rem; /* More space */
+            border-radius: 0.75rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+        }
+        .pain-point-image-container .number {
+            font-size: 2.2rem; /* Adjusted font size */
+            font-weight: 700; /* Bolder */
+            color: #475569; /* Slate 700 */
+        }
+        .pain-point-text-content {
+            flex-grow: 1;
+        }
+        /* Adjusted styling for sub-headers within pain points */
+        .pain-point-text-content h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* Bolder */
+            color: #1e293b; /* Slate 900 */
+            margin-bottom: 0.6rem; /* More space below sub-header */
+        }
+        .pain-point-text-content p {
+            margin-left: 0;
+            margin-bottom: 0;
+            line-height: 1.7; /* Better readability */
+        }
+        /* Styling for the image placeholder within the overlook section */
+        .overlook-image-placeholder {
+            width: 100%;
+            min-height: 650px; /* Increased height for more vertical space */
+            background-color: #eef2f6; /* Lighter background for placeholder */
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: #64748b; /* Slate 500 */
+            text-align: center;
+            border: 2px dashed #cbd5e1; /* Softer dashed border */
+            padding: 2rem;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); /* Inner shadow */
+        }
+        /* Styling for revenue stream columns */
+        .revenue-stream-card {
+            background-color: #ffffff; /* Changed to white */
+            border-radius: 1rem; /* More rounded */
+            padding: 2rem; /* More padding */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            border: 1px solid #e2e8f0; /* Subtle border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Hover effect */
+        }
+        .revenue-stream-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .revenue-stream-card h3 {
+            font-size: 1.35rem; /* Larger font */
+            font-weight: 700; /* Bolder */
+            color: #1e293b; /* Slate 900 */
+            margin-bottom: 0.8rem; /* More space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem; /* Space between number and title */
+        }
+        .revenue-stream-card .revenue-number-circle-top {
+            width: 40px; /* Size for revenue number circle */
+            height: 40px;
+            color: white;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin: 0 auto 1rem auto; /* Center and add margin below */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .revenue-stream-card p {
+            font-size: 0.95rem; /* Slightly larger text */
+            color: #475569; /* Slate 700 */
+            line-height: 1.6;
+        }
+        /* Styling for how it works steps */
+        .how-it-works-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem; /* More space between steps */
+            position: relative;
+        }
+        .how-it-works-step:last-child {
+            margin-bottom: 0;
+        }
+        .how-it-works-step .step-number {
+            flex-shrink: 0;
+            width: 52px; /* Larger circle for numbers */
+            height: 52px;
+            color: white;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800; /* Extra bold */
+            margin-right: 1.8rem; /* More space */
+            font-size: 1.6rem; /* Larger font size for numbers */
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 0 5px var(--step-bg-color), 0 4px 10px rgba(0,0,0,0.1); /* Enhanced halo and shadow */
+        }
+        /* Vertical line connecting step numbers */
+        .how-it-works-step::before {
+            content: '';
+            position: absolute;
+            left: 25px; /* Center of the 52px number - 1px for line thickness */
+            top: 52px; /* Start below the number (height of step-number) */
+            bottom: -2rem; /* Extends to the next step's top margin */
+            width: 2px;
+            background-color: #94a3b8; /* Slate 400 for the line */
+            z-index: 0;
+        }
+        .how-it-works-step:last-child::before {
+            display: none;
+        }
+
+        .how-it-works-step-content {
+            flex-grow: 1;
+        }
+        /* Modified styling for the new <p> tags instead of <h3> */
+        .how-it-works-step-content .step-title { /* New class for the bolded <p> */
+            font-size: 0.95rem; /* Same size as content */
+            font-weight: 700; /* Bolder than content */
+            color: #1e293b; /* Slate 900 */
+            margin-bottom: 0.1rem; /* Reduced margin */
+            display: block; /* Ensure it behaves like a block element */
+        }
+        .how-it-works-step-content p {
+            margin-bottom: 0; /* Ensure no extra margin for content paragraphs */
+        }
+
+        /* New styles for how it works subsections */
+        .how-it-works-subsection {
+            background-color: #fefefe; /* Very light background for subsections */
+            border-radius: 1.25rem; /* More rounded */
+            padding: 2.5rem; /* More padding */
+            margin-bottom: 3rem; /* More space */
+            border: 1px solid #e2e8f0; /* Subtle border */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* Softer shadow */
+        }
+        .how-it-works-subsection.user-flow {
+            background-color: #eff6ff; /* Lightest Blue for User Flow (Blue 50) */
+            --step-bg-color: #eff6ff;
+            border-color: #dbeafe; /* Blue 100 */
+        }
+        .how-it-works-subsection.user-flow .how-it-works-step .step-number {
+             background-color: #2563eb; /* Blue 600 */
+        }
+        .how-it-works-subsection.brand-flow {
+            background-color: #fdf2f8; /* Lightest Pink for Brand Flow (Pink 50) */
+            --step-bg-color: #fdf2f8;
+            border-color: #fce7f3; /* Pink 100 */
+        }
+        .how-it-works-subsection.brand-flow .how-it-works-step .step-number {
+             background-color: #e879f9; /* Fuchsia 400 */
+        }
+
+        .how-it-works-subsection h3 {
+            text-align: left;
+            margin-bottom: 1.8rem; /* More space */
+            font-size: 2.1rem; /* Larger heading */
+            font-weight: 800; /* Extra bold */
+            color: #1a202c; /* Darker text for headings */
+            display: flex; /* Enable flex for icon alignment */
+            align-items: center; /* Vertically align icon with text */
+            gap: 0.75rem; /* Space between icon and text */
+        }
+        .how-it-works-subsection h3 .section-icon {
+            font-size: 2.2rem; /* Size of the icon */
+            line-height: 1; /* Ensure icon doesn't affect line height too much */
+            color: #64748b; /* Slate 500 for icons */
+        }
+        .how-it-works-subsection .space-y-4 {
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Styles from Feasibility Report - Website Preview.html */
+        .section-fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: none;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 550px; /* Slightly larger chart */
+            margin-left: auto;
+            margin-right: auto;
+            height: 420px; /* Taller chart for legend */
+            max-height: 500px;
+            background-color: #f8fafc; /* Light background for chart area */
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px; /* Ensure height for larger screens */
+            }
+        }
+        /* Specific styles for the feasibility report sections */
+        .report-section-card {
+            background-color: #ffffff;
+            border-radius: 1.75rem;
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08), 0 5px 15px -5px rgba(0, 0, 0, 0.03);
+            padding: 3rem;
+            margin-bottom: 3.5rem;
+            width: 100%;
+            max-width: 6xl;
+            border: 1px solid #e2e8f0; /* Subtle border */
+        }
+        .pipeline-step {
+            position: relative;
+            padding: 1.5rem; /* More padding */
+            border-radius: 1rem; /* More rounded */
+            background-color: #fefefe; /* Lighter background */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            border: 1px solid #e2e8f0; /* Subtle border */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .pipeline-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .pipeline-step .details {
+            display: block !important;
+        }
+        .core-concept-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem; /* More rounded */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* Subtle shadow */
+            padding: 1.5rem; /* Padding for the card content */
+            position: relative; /* For positioning the number circle */
+            padding-top: 2.5rem; /* Make space for the number circle, adjusted */
+        }
+        .core-concept-number-circle {
+            position: absolute;
+            top: -1.5rem; /* Adjusted to place it higher */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 48px;
+            color: white;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+            z-index: 20; /* Ensure it's on top */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 3px solid #ffffff; /* White border around the circle */
+        }
+        .core-concept-card h3 {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+            text-align: center; /* Center the heading */
+            font-size: 1.35rem; /* Larger font for concept titles */
+        }
+        .core-concept-card p {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+            text-align: left; /* Align description left */
+        }
+
+        .render-option-card {
+            background-color: #ffffff;
+            border-radius: 1rem; /* More rounded */
+            padding: 2rem; /* More padding */
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .render-option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .render-option-card h3 {
+            font-size: 1.35rem; /* Larger font */
+            font-weight: 700;
+            color: #1e293b; /* Darker text */
+            margin-bottom: 0.6rem;
+        }
+        .render-option-card p {
+            font-size: 0.95rem; /* Slightly larger text */
+            color: #475569;
+            line-height: 1.6;
+        }
+        .render-option-card .recommendation {
+            margin-top: 1.2rem; /* More space */
+            padding: 0.9rem; /* More padding */
+            background-color: #ecfdf5; /* Lighter green */
+            color: #047857; /* Darker green */
+            border-radius: 0.75rem; /* More rounded */
+            font-size: 0.9rem; /* Slightly larger text */
+            font-weight: 600;
+            border: 1px solid #a7f3d0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-stone-200 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-6 lg:px-8"> <!-- Adjusted px -->
+            <div class="flex justify-between items-center h-18"> <!-- Slightly taller nav -->
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-stone-900">Meru App Pitch Deck</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6"> <!-- More space between links -->
+                        <a href="#market-trends" class="text-blue-400 hover:bg-blue-50 hover:text-blue-600 px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">Market Trends</a>
+                        <a href="#pain-points" class="text-pink-400 hover:bg-pink-50 hover:text-pink-600 px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">Pain Points</a>
+                        <a href="#overlook" class="text-purple-400 hover:bg-purple-50 hover:text-purple-600 px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">Overlook</a>
+                        <a href="#core-concepts" class="text-teal-400 hover:bg-teal-50 hover:text-teal-600 px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">Core Concepts</a>
+                        <a href="#how-it-works" class="text-indigo-400 hover:bg-indigo-50 hover:text-indigo-800 px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">How It Works</a>
+                        <a href="#revenue-streams" class="text-orange-400 hover:bg-orange-50 hover:text-orange-600 px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">Revenue Streams</a>
+                        <a href="#feasibility-report" class="text-red-400 hover:bg-red-50 hover:text-red-600 px-4 py-2 rounded-md text-base font-medium transition-colors duration-200">Feasibility Report</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Original Header Section with Meru title and checkmarks -->
+    <div class="text-center mt-16 mb-16 px-4"> <!-- More top/bottom margin, added horizontal padding -->
+        <h1 class="text-7xl sm:text-8xl lg:text-9xl font-extrabold text-gray-900 mb-6 tracking-tight leading-none"> <!-- Larger, bolder, tighter leading -->
+            meru
+        </h1>
+        <p class="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"> <!-- Larger text, more mb, relaxed leading -->
+            One stop platform for all your fashion needs
+        </p>
+
+        <!-- Features List -->
+        <div class="flex flex-wrap justify-center gap-x-10 gap-y-5 text-lg text-gray-700"> <!-- Larger gaps -->
+            <div class="flex items-center">
+                <span class="checkmark-icon">
+                    <svg viewBox="0 0 24 24" class="w-4 h-4">
+                        <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </span>
+                <span>Physics-enabled Live Dress-ups</span>
+            </div>
+            <div class="flex items-center">
+                <span class="checkmark-icon">
+                    <svg viewBox="0 0 24 24" class="w-4 h-4">
+                        <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </span>
+                <span>Order-to-Cash</span>
+            </div>
+            <div class="flex items-center">
+                <span class="checkmark-icon">
+                    <svg viewBox="0 0 24 24" class="w-4 h-4">
+                        <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </span>
+                <span>Live 3D Custom Model</span>
+            </div>
+            <div class="flex items-center">
+                <span class="checkmark-icon">
+                    <svg viewBox="0 0 24 24" class="w-4 h-4">
+                        <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </span>
+                <span>Real-dimension clothings</span>
+            </div>
+            <div class="flex items-center">
+                <span class="checkmark-icon">
+                    <svg viewBox="0 0 24 24" class="w-4 h-4">
+                        <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </span>
+                <span>API Integrated</span>
+            </div>
+            <!-- New Feature Added -->
+            <div class="flex items-center">
+                <span class="checkmark-icon">
+                    <svg viewBox="0 0 24 24" class="w-4 h-4">
+                        <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </span>
+                <span>Door-to-door delivery</span>
+            </div>
+        </div>
+    </div>
+
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Section: Market Trend Analysis -->
+        <div id="market-trends" class="section-card">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Understanding Market Trends: The Rise of Online Fashion</h2>
+
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                The global fashion industry has witnessed a significant paradigm shift, with online channels becoming increasingly dominant. This trend, accelerated by recent global events, highlights a clear consumer preference for the convenience and vast selection offered by e-commerce platforms.
+            </p>
+
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Key Growth Metrics:</h3>
+            <ul class="list-disc list-inside text-lg text-gray-700 mb-10 space-y-3"> <!-- Larger text, more space -->
+                <li>Pre-COVID (2019): The global fashion e-commerce market was valued at approximately <strong>$536.79 billion</strong>.</li>
+                <li>Post-COVID Surge (2021): This figure saw substantial growth, reaching around <strong>$663.80 billion</strong>, as consumers rapidly adopted online shopping.</li>
+                <li>Current Landscape (2024): The market continues its upward trajectory, projected to hit <strong>$801.60 billion</strong>.</li>
+                <li>Future Forecast (2029): Experts predict continued robust expansion, with the market expected to reach an impressive <strong>$1,232.40 billion</strong>.</li>
+            </ul>
+
+            <div class="flex justify-center mb-10"> <!-- More margin-bottom -->
+                <canvas id="marketTrendChart" class="w-full max-w-2xl rounded-lg shadow-md"></canvas>
+            </div>
+            <p class="text-sm text-gray-500 text-center mb-3">
+                This chart visually represents the growth of the global online fashion market over time, from pre-COVID figures to future forecasts. The dashed line and different fill color indicate the projected growth.
+            </p>
+            <p class="text-sm text-gray-500 text-center italic mb-12"> <!-- More margin-bottom -->
+                Please note: The data presented in this chart is compiled using AI and is for illustrative purposes only. All figures are estimates.
+            </p>
+        </div>
+
+        <!-- Section: Addressing Key Pain Points in Online Fashion Shopping -->
+        <div id="pain-points" class="section-card">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Addressing Key Pain Points in Online Fashion Shopping</h2>
+
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                Despite the immense growth in online fashion, consumers frequently encounter significant challenges that hinder their shopping experience:
+            </p>
+
+            <ul class="pain-point-list text-gray-700">
+                <li class="pain-point-item">
+                    <div class="pain-point-image-container" style="background-color: #FFD1DC;"> <!-- Light Pink -->
+                        <span class="number">1.</span>
+                    </div>
+                    <div class="pain-point-text-content">
+                        <h3 class="text-xl font-bold text-gray-900">Fit Discrepancy</h3>
+                        <p class="text-base text-gray-700">A prevalent issue is the uncertainty of fit. When clothes finally arrive, customers often discover they don't fit correctly due to varying measurement methods, brand-specific sizing, or simple errors in product descriptions. This leads to high return rates and customer dissatisfaction.</p>
+                    </div>
+                </li>
+                <li class="pain-point-item">
+                    <div class="pain-point-image-container" style="background-color: #D1E7FF;"> <!-- Light Blue -->
+                        <span class="number">2.</span>
+                    </div>
+                    <div class="pain-point-text-content">
+                        <h3 class="text-xl font-bold text-gray-900">Styling Challenges</h3>
+                        <p class="text-base text-gray-700">Consumers typically visualize individual garments in isolation. It's challenging to envision how different pieces will combine to form a complete outfit, making the process of styling an entire look cumbersome and often resulting in uncoordinated purchases.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section: Overlook -->
+        <div id="overlook" class="section-card overlook-section-card">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Overlook: How the Meru App Will Look</h2>
+            <div class="overlook-image-placeholder">
+                [Insert Image of Meru App Here]
+            </div>
+        </div>
+
+        <!-- Section: Core Concepts -->
+        <div id="core-concepts" class="section-card">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Core Concepts of the Meru App</h2>
+
+            <p class="text-lg text-gray-700 mb-10 leading-relaxed">
+                The Meru app is engineered to revolutionize your online fashion experience by directly addressing key pain points and leveraging advanced capabilities. Our core concepts are centered around delivering a personalized, immersive, and seamless journey from virtual try-on to doorstep delivery:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"> <!-- Adjusted grid for 2 columns, centered -->
+                <!-- Concept 1 -->
+                <div class="core-concept-card">
+                    <div class="core-concept-number-circle" style="background-color: #f97316;">1</div>
+                    <h3 class="font-bold text-lg text-stone-900">Your Personalized 3D Body Model: Eliminating Fit Discrepancy</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Meru creates a precise <strong>Live 3D Custom Model</strong> of *your* unique body, capturing your exact dimensions from simple photographs. This ensures that every garment you virtually try on is rendered to your <strong>Real-dimension clothings</strong>, eliminating guesswork and the frustration of ill-fitting clothes upon arrival. Say goodbye to returns due to sizing issues!</p>
+                </div>
+
+                <!-- Concept 2 -->
+                <div class="core-concept-card">
+                    <div class="core-concept-number-circle" style="background-color: #2563eb;">2</div>
+                    <h3 class="font-bold text-lg text-stone-900">Dynamic Virtual Try-On & Outfit Styling: Overcoming Styling Challenges</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Experience clothing virtually with <strong>Physics-enabled Live Dress-ups</strong>. See how fabrics drape, move, and interact with your personalized 3D model in real-time. This allows you to effortlessly combine individual pieces into complete outfits, empowering you to style and visualize your perfect look before you buy, solving the challenge of imagining combinations.</p>
+                </div>
+
+                <!-- Concept 3 -->
+                <div class="core-concept-card">
+                    <div class="core-concept-number-circle" style="background-color: #10b981;">3</div>
+                    <h3 class="font-bold text-lg text-stone-900">Photorealistic Preview & Seamless Purchase: Confidence and Convenience</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Beyond interactive previews, Meru generates high-quality, photorealistic images of garments on your model, ensuring you see the exact look and feel of the clothing. Once satisfied, our integrated <strong>Order-to-Cash</strong> system and <strong>API Integrated</strong> connectivity ensure a smooth purchase process, followed by convenient <strong>Door-to-door delivery</strong>. This comprehensive approach provides confidence in your purchasing decisions and unparalleled convenience.</p>
+                </div>
+
+                <!-- Concept 4 -->
+                <div class="core-concept-card">
+                    <div class="core-concept-number-circle" style="background-color: #ef4444;">4</div>
+                    <h3 class="font-bold text-lg text-stone-900">Your Digital Lookbook: Share & Get Feedback</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Curate your favorite virtual outfits and looks within your personalized digital Lookbook. Easily share these looks with friends and family via social media or direct messaging to gather feedback, or simply share your style inspiration even before making a purchase. Your Lookbook becomes a dynamic canvas for your fashion journey.</p>
+                </div>
+
+                <!-- Concept 5 -->
+                <div class="core-concept-card text-center"> <!-- Added text-center here -->
+                    <div class="core-concept-number-circle" style="background-color: #8b5cf6;">5</div>
+                    <h3 class="font-bold text-lg text-stone-900">Creator Studio: Empowering Stylists & Curators</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Meru will feature a dedicated "Creator Studio" similar to platforms like YouTube, empowering professional stylists and fashion curators to build and share their own digital lookbooks. This feature will allow them to create curated outfit recommendations for general users, expanding content variety, fostering a vibrant community, and driving organic engagement through their existing followers.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- New Section: How Meru Works -->
+        <div id="how-it-works" class="section-card">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">How Meru Works</h2>
+
+            <p class="text-lg text-gray-700 mb-10 leading-relaxed text-center">
+                Meru simplifies the online fashion experience for users and streamlines the digital transformation for brands. Here's a step-by-step look at how our innovative platform operates:
+            </p>
+
+            <!-- Subsection: For Users -->
+            <div class="how-it-works-subsection user-flow">
+                <h3 class="text-3xl font-extrabold text-gray-800 mb-6 text-left"><span class="section-icon">📱</span> For Users: Your Personalized Fashion Journey</h3>
+                <div class="space-y-6 mb-8"> <!-- More space between steps -->
+                    <div class="how-it-works-step">
+                        <div class="step-number">1</div>
+                        <div class="how-it-works-step-content">
+                            <p class="step-title">Create Your Digital Twin</p>
+                            <p>Easily scan your body using your smartphone camera to create a precise 3D digital model of yourself. Our app includes controls to guide you through the process, ensuring a high-quality scan for accurate virtual try-ons.</p>
+                        </div>
+                    </div>
+                    <div class="how-it-works-step">
+                        <div class="step-number">2</div>
+                        <div class="how-it-works-step-content">
+                            <p class="step-title">Explore & Style from Extensive Catalogs</p>
+                            <p>Once your digital model is ready, dive into Meru's extensive catalog of fashion items. Browse, mix, and match clothes directly on your personalized 3D body, seeing exactly how each piece fits and drapes in real-time.</p>
+                        </div>
+                    </div>
+                    <div class="how-it-works-step">
+                        <div class="step-number">3</div>
+                        <div class="how-it-works-step-content">
+                            <p class="step-title">Save Looks or Add to Cart</p>
+                            <p>Found an outfit you love? Save your styled combinations to your digital Lookbook to revisit later or share with friends. Ready to buy? Simply add your chosen items to the cart.</p>
+                        </div>
+                    </div>
+                    <div class="how-it-works-step">
+                        <div class="step-number">4</div>
+                        <div class="how-it-works-step-content">
+                            <p class="step-title">Seamless Checkout & Delivery</p>
+                            <p>Complete your purchase securely within the app using our integrated payment gateway. Once your order is confirmed, the clothing items will be delivered directly to your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection: For Brands & Meru -->
+            <div class="how-it-works-subsection brand-flow">
+                <h3 class="text-3xl font-extrabold text-gray-800 mb-6 text-left"><span class="section-icon">☁️</span> For Brands & Meru: Bringing Fashion to Life Digitally</h3>
+                <div class="space-y-6"> <!-- More space between steps -->
+                    <div class="how-it-works-step">
+                        <div class="step-number">1</div>
+                        <div class="how-it-works-step-content">
+                            <p class="step-title">Brand Collection Submission</p>
+                            <p>Fashion brands send us physical samples of their collections. If available, original pattern designs and detailed dimension information are also submitted to streamline the digital replication process.</p>
+                        </div>
+                    </div>
+                    <div class="how-it-works-step">
+                        <div class="step-number">2</div>
+                        <div class="how-it-works-step-content">
+                            <p class="step-title">3D Model Creation & Optimization</p>
+                            <p>Our team, leveraging advanced 3D software like CLO3D, transforms physical garments and pattern data into highly realistic, physics-enabled 3D models. These models are optimized for seamless performance within the app.</p>
+                        </div>
+                    </div>
+                    <div class="how-it-works-step">
+                        <div class="step-number">3</div>
+                        <div class="how-it-works-step-content">
+                            <p class="step-title">Catalog Integration & API Linking</p>
+                            <p>The completed 3D garment models are uploaded to Meru's digital catalog, making them instantly available for users. Our IT experts will work to integrate our order system directly with brand warehouses via APIs, ensuring efficient order fulfillment and delivery.</p>
+                        </div>
+                    </div>
+                    <div class="how-it-works-step">
+                        <div class="step-number">4</div>
+                        <div class="how-it-works-step-content">
+                            <p class="step-title">Sales & Payment Processing</p>
+                            <p>When a user purchases an item, Meru processes the sale. Brands receive their agreed-upon share of the sales revenue within a predefined payment cycle, ensuring a smooth and transparent financial flow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Section: Identified Potential Revenue Streams -->
+        <div id="revenue-streams" class="section-card">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Identified Potential Revenue Streams</h2>
+
+            <p class="text-lg text-gray-700 mb-10 leading-relaxed text-center">
+                Meru's business model is designed with multiple avenues for sustainable growth and profitability, ensuring value for both users and partners.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> <!-- Larger gap -->
+                <!-- Revenue Stream 1: Direct Sales - Tiered Commissions -->
+                <div class="revenue-stream-card">
+                    <div class="revenue-number-circle-top" style="background-color: #059669;">1</div>
+                    <h3>Direct Sales - Tiered Commissions</h3>
+                    <p class="text-sm text-gray-700 mb-4">
+                        Earn commissions from the sale of individual clothing pieces directly through the app. A tiered commission structure can incentivize higher sales volumes.
+                    </p>
+                    <div class="revenue-chart-container w-full h-32">
+                        <canvas id="revenueChart1"></canvas>
+                    </div>
+                </div>
+
+                <!-- Revenue Stream 2: Targeted Fashion Advertisements -->
+                <div class="revenue-stream-card">
+                    <div class="revenue-number-circle-top" style="background-color: #2563eb;">2</div>
+                    <h3>Targeted Fashion Advertisements</h3>
+                    <p class="text-sm text-gray-700 mb-4">
+                        Generate revenue by hosting highly relevant, fashion-specific advertisements, ensuring a non-intrusive and valuable experience for users.
+                    </p>
+                    <div class="revenue-chart-container w-full h-32">
+                        <canvas id="revenueChart2"></canvas>
+                    </div>
+                </div>
+
+                <!-- Revenue Stream 3: Premium VIP Subscriptions -->
+                <div class="revenue-stream-card">
+                    <div class="revenue-number-circle-top" style="background-color: #f97316;">3</div>
+                    <h3>Premium VIP Subscriptions</h3>
+                    <p class="text-sm text-gray-700 mb-4">
+                        Offer tiered subscription plans (e.g., yearly, 6-month, 3-month) providing access to exclusive VIP features, enhanced Lookbook functionalities, and premium content.
+                    </p>
+                    <div class="revenue-chart-container w-full h-32">
+                        <canvas id="revenueChart3"></canvas>
+                    </div>
+                </div>
+
+                <!-- Revenue Stream 4: Exclusive Vendor Partnerships -->
+                <div class="revenue-stream-card">
+                    <div class="revenue-number-circle-top" style="background-color: #dc2626;">4</div>
+                    <h3>Exclusive Vendor Partnerships</h3>
+                    <p class="text-sm text-gray-700 mb-4">
+                        Forge exclusive agreements with select fashion brands and designers, offering them prime placement, unique collaboration opportunities, or data insights in exchange for a fee or higher commission rates.
+                    </p>
+                    <div class="revenue-chart-container w-full h-32">
+                        <canvas id="revenueChart4"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feasibility Report Section -->
+        <section id="feasibility-report" class="report-section-card">
+            <h2 class="text-4xl font-extrabold tracking-tight text-stone-900 text-center mb-8 leading-tight">Feasibility Report: Technical Deep Dive & Required Actions</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 text-center mb-12 leading-relaxed">
+                This section provides a detailed assessment of the core 3D technologies required for the Meru app, outlining the technical verdict and the key actions necessary for successful implementation.
+            </p>
+
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Before we move on:</h3>
+            <!-- CLO3D Explanation Card -->
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-200 shadow-md mb-12 max-w-3xl mx-auto text-left">
+                <h3 class="text-xl font-bold text-blue-800 mb-3">What is CLO3D and its Relevance?</h3>
+                <p class="text-blue-700 text-base leading-relaxed">
+                    <strong>CLO3D</strong> is a leading 3D fashion design software that enables designers to create realistic 3D garment simulations. It uses advanced cloth physics to accurately represent how fabric drapes, fits, and moves.
+                    <br><br>
+                    <strong>Relevance to Meru:</strong> CLO3D-like capabilities are crucial for Meru's core functionality:
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Realistic Virtual Try-On:</strong> Ensures garments on user's 3D models look authentic.</li>
+                        <li><strong>Accurate Fit Simulation:</strong> Helps users visualize how clothes will fit their unique body dimensions.</li>
+                        <li><strong>Efficient Digital Prototyping:</strong> Allows brands to quickly convert physical garments into digital assets for the app.</li>
+                    </ul>
+                    Achieving a <strong>real-time, client-side</strong> simulation similar to CLO3D's fidelity is a significant technical challenge, which is why a hybrid client-server approach is recommended for Meru.
+                </p>
+            </div>
+
+            <section id="report-overview" class="section-fade-in text-center mb-20"> <!-- More margin-bottom -->
+                <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Technical Verdict</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed">An assessment of the core 3D technologies required. The proposed application is ambitious but achievable through a strategic client-server architecture.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10"> <!-- Larger gap -->
+                    <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-lg"> <!-- More padding, larger shadow -->
+                        <h3 class="text-xl font-bold text-stone-900">Overall Feasibility</h3>
+                        <p class="mt-3 text-4xl font-extrabold text-teal-600">Challenging</p> <!-- Larger, bolder -->
+                        <p class="mt-2 text-stone-600 text-base">but feasible with a dedicated, expert team.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-lg">
+                        <h3 class="text-xl font-bold text-stone-900">Key Strategy</h3>
+                        <p class="mt-3 text-4xl font-extrabold text-slate-600">Client-Server Model</p>
+                        <p class="mt-2 text-stone-600 text-base">Offload heavy processing to a powerful backend.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-lg">
+                        <h3 class="text-xl font-bold text-stone-900">Primary Hurdle</h3>
+                        <p class="mt-3 text-4xl font-extrabold text-amber-600">Client-Side Preview</p>
+                        <p class="mt-2 text-stone-600 text-base">Real-time cloth simulation on mobile is the main challenge.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="report-pipeline" class="section-fade-in mb-20"> <!-- More margin-bottom -->
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">The Core Technical Pipeline</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed">From user scan to final render, the process is split between the user's device (client) and your backend (server). All details are displayed below.</p>
+                </div>
+                <div class="relative">
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-stone-300 -translate-y-1/2"></div>
+                    <div class="relative grid grid-cols-1 md:grid-cols-3 gap-10"> <!-- Larger gap -->
+                        <div class="pipeline-step">
+                            <div class="flex justify-center items-center">
+                                <span class="absolute md:hidden top-full left-1/2 w-0.5 h-8 bg-stone-300 -translate-x-1/2"></span>
+                                <div class="relative z-10 w-16 h-16 bg-white border-2 border-slate-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-md">1</div>
+                            </div>
+                            <h3 class="mt-5 text-xl font-semibold">Human Photogrammetry</h3>
+                            <div class="mt-3 flex justify-center items-center gap-2 font-medium text-stone-600">
+                                <span class="text-2xl" title="Server-side processing">☁️</span>
+                                <span>Server-Side</span>
+                            </div>
+                            <div class="details p-5 mt-5 bg-stone-100 rounded-lg text-left border border-stone-200 shadow-sm"> <!-- More padding, subtle border/shadow -->
+                                <h4 class="font-bold text-stone-800">Purpose</h4>
+                                <p class="text-base text-stone-700 mb-2">Create an accurate 3D body model from user photos.</p>
+                                <h4 class="font-bold text-stone-800">Complexity: <span class="text-red-600">High</span></h4>
+                                <p class="text-base text-stone-700 mb-2">Requires guided data capture and robust SfM/MVS algorithms.</p>
+                                <h4 class="font-bold text-stone-800">Feasibility</h4>
+                                <p class="text-base text-stone-700">Possible by uploading images for server-side processing with libraries like COLMAP.</p>
+                            </div>
+                        </div>
+                        <div class="pipeline-step">
+                            <div class="flex justify-center items-center">
+                                <span class="absolute md:hidden top-full left-1/2 w-0.5 h-8 bg-stone-300 -translate-x-1/2"></span>
+                                <div class="relative z-10 w-16 h-16 bg-white border-2 border-slate-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-md">2</div>
+                            </div>
+                            <h3 class="mt-5 text-xl font-semibold">AI-Assisted Retopology</h3>
+                            <div class="mt-3 flex justify-center items-center gap-2 font-medium text-stone-600">
+                                <span class="text-2xl" title="Server-side processing">☁️</span>
+                                <span>Server-Side</span>
+                            </div>
+                            <div class="details p-5 mt-5 bg-stone-100 rounded-lg text-left border border-stone-200 shadow-sm">
+                                <h4 class="font-bold text-stone-800">Purpose</h4>
+                                <p class="text-base text-stone-700 mb-2">Convert the raw scan into a clean, optimized mesh for simulation.</p>
+                                <h4 class="font-bold text-stone-800">Complexity: <span class="text-red-600">Very High</span></h4>
+                                <p class="text-base text-stone-700 mb-2">Automating this for diverse body shapes is a significant AI challenge.</p>
+                                <h4 class="font-bold text-stone-800">Feasibility</h4>
+                                <p class="text-base text-stone-700">Achievable on the server. AI significantly streamlines the process.</p>
+                            </div>
+                        </div>
+                        <div class="pipeline-step">
+                            <div class="flex justify-center items-center">
+                                <div class="relative z-10 w-16 h-16 bg-white border-2 border-slate-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-md">3</div>
+                            </div>
+                            <h3 class="mt-5 text-xl font-semibold">Garment Simulation</h3>
+                            <div class="mt-3 flex justify-center items-center gap-2 font-medium text-stone-600">
+                                <span class="text-2xl" title="Client-side processing">📱</span>
+                                <span>Client</span> & <span class="text-2xl" title="Server-side processing">☁️</span> <span>Server</span>
+                            </div>
+                            <div class="details p-5 mt-5 bg-stone-100 rounded-lg text-left border border-stone-200 shadow-sm">
+                                <h4 class="font-bold text-stone-800">Purpose</h4>
+                                <p class="text-base text-stone-700 mb-2">Drape and render 3D clothing on the user's body model.</p>
+                                <h4 class="font-bold text-stone-800">Interactive Preview (Client)</h4>
+                                <p class="text-base text-stone-700 mb-2">Challenging but feasible on high-end devices. Requires a lightweight, real-time cloth physics engine.</p>
+                                <h4 class="font-bold text-stone-800">High-Quality Render (Server)</h4>
+                                <p class="text-base text-stone-700">Highly feasible. A robust engine renders high-fidelity images/videos on the server.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="report-challenges" class="section-fade-in mb-20"> <!-- More margin-bottom -->
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Client-Side Simulation: Key Challenges</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed">Replicating even minimum CLO3D features for the live preview is a significant undertaking. Here are the primary technical hurdles to overcome, with all details displayed.</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-6"> <!-- Larger space -->
+                    <div class="challenge-item bg-white border border-stone-200 rounded-xl shadow-md overflow-hidden"> <!-- More rounded, larger shadow -->
+                        <button class="w-full text-left p-5 flex justify-between items-center focus:outline-none"> <!-- More padding -->
+                            <span class="font-bold text-lg text-stone-900">Lightweight Physics Model</span> <!-- Bolder, larger text -->
+                            <span class="transform transition-transform duration-300 text-2xl text-stone-400" style="display: none;">+</span>
+                        </button>
+                        <div class="challenge-details p-5 border-t border-stone-200 bg-stone-50"> <!-- More padding -->
+                            <p class="text-base text-stone-700 leading-relaxed">Developing or integrating a simplified physics model (e.g., mass-spring system) that prioritizes speed over absolute accuracy. It must be stable and performant on mobile hardware.</p>
+                        </div>
+                    </div>
+                    <div class="challenge-item bg-white border border-stone-200 rounded-xl shadow-md overflow-hidden">
+                        <button class="w-full text-left p-5 flex justify-between items-center focus:outline-none">
+                            <span class="font-bold text-lg text-stone-900">Real-Time Collision Detection</span>
+                            <span class="transform transition-transform duration-300 text-2xl text-stone-400" style="display: none;">+</span>
+                        </button>
+                        <div class="challenge-details p-5 border-t border-stone-200 bg-stone-50">
+                            <p class="text-base text-stone-700 leading-relaxed">Efficiently detecting collisions between the garment mesh and the body mesh in real-time. Simplified self-collision (fabric on fabric) is even harder and may need to be faked for the preview.</p>
+                        </div>
+                    </div>
+                    <div class="challenge-item bg-white border border-stone-200 rounded-xl shadow-md overflow-hidden">
+                        <button class="w-full text-left p-5 flex justify-between items-center focus:outline-none">
+                            <span class="font-bold text-lg text-stone-900">Performance Optimization</span>
+                            <span class="transform transition-transform duration-300 text-2xl text-stone-400" style="display: none;">+</span>
+                        </button>
+                        <div class="challenge-details p-5 border-t border-stone-200 bg-stone-50">
+                            <p class="text-base text-stone-700 leading-relaxed">Aggressive optimization is paramount. This includes using level-of-detail (LOD) for meshes, simplifying physics calculations, and leveraging GPU acceleration wherever possible to achieve acceptable frame rates.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="report-rendering" class="section-fade-in">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Server-Side Rendering Options</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed">For high-quality results, the server can use different rendering methods. Here's a comparison of the trade-offs between Quality, Speed, and Hardware Requirements for each option.</p>
+                </div>
+                <div class="chart-container mb-10"> <!-- More margin-bottom -->
+                    <canvas id="renderingChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> <!-- Larger gap -->
+                    <!-- Basic PBR Card -->
+                    <div class="render-option-card">
+                        <h3 class="text-emerald-600">Basic PBR</h3> <!-- Changed to emerald for consistency -->
+                        <p class="text-base"><strong>Quality:</strong> Good, realistic lighting and material properties.</p>
+                        <p class="text-base"><strong>Speed:</strong> Fast (seconds).</p>
+                        <p class="text-base"><strong>Requirements:</strong> Low to Moderate.</p>
+                        <p class="text-stone-700 mt-3 text-sm leading-relaxed">Good, realistic lighting and material properties. Renders are fast (seconds), making it a great baseline. Ideal for quick previews where speed is critical.</p>
+                    </div>
+                    <!-- Advanced RT (Hybrid) Card -->
+                    <div class="render-option-card">
+                        <h3 class="text-blue-600">Advanced RT (Hybrid)</h3> <!-- Changed to blue for consistency -->
+                        <p class="text-base"><strong>Quality:</strong> Excellent with realistic global illumination and soft shadows.</p>
+                        <p class="text-base"><strong>Speed:</strong> Moderate (tens of seconds to minutes).</p>
+                        <p class="text-base"><strong>Requirements:</strong> High (e.g., RTX series GPUs).</p>
+                        <p class="text-stone-700 mt-3 text-sm leading-relaxed">Excellent quality with realistic global illumination and soft shadows. Requires high-end GPUs (e.g., RTX series). Renders take tens of seconds to minutes.</p>
+                        <div class="recommendation">
+                            <span class="font-bold">Recommendation:</span> This is the most efficient method for your use case, balancing photorealistic quality with acceptable server processing time.
+                        </div>
+                    </div>
+                    <!-- Full Path Tracing Card -->
+                    <div class="render-option-card">
+                        <h3 class="text-amber-600">Full Path Tracing</h3>
+                        <p class="text-base"><strong>Quality:</strong> Absolute photorealistic quality, the gold standard.</p>
+                        <p class="text-base"><strong>Speed:</strong> Very Slow (minutes to hours per image).</p>
+                        <p class="text-base"><strong>Requirements:</strong> Very High (powerful GPUs or render farms).</p>
+                        <p class="text-stone-700 mt-3 text-sm leading-relaxed">Absolute photorealistic quality, the gold standard. Extremely slow (minutes to hours per image) and requires powerful GPUs or render farms. Best for hero marketing shots.</p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Market Trend Chart
+            const years = ['2019', '2021', '2024', '2029'];
+            const marketValues = [536.79, 663.80, 801.60, 1232.40]; // in billions USD
+
+            const ctx = document.getElementById('marketTrendChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Global Online Fashion Market Value (USD Billion)',
+                        data: marketValues,
+                        borderColor: '#2563eb', /* Blue 600 */
+                        backgroundColor: (context) => {
+                            const chart = context.chart;
+                            const {ctx, chartArea} = chart;
+                            if (!chartArea) {
+                                return null;
+                            }
+                            const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.1)'); /* Blue 500 with 0.1 opacity */
+                            gradient.addColorStop(0.75, 'rgba(59, 130, 246, 0.1)');
+                            gradient.addColorStop(0.75, 'rgba(16, 185, 129, 0.1)'); /* Emerald 500 with 0.1 opacity */
+                            gradient.addColorStop(1, 'rgba(16, 185, 129, 0.1)');
+                            return gradient;
+                        },
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#1d4ed8', /* Blue 700 */
+                        pointBorderColor: '#fff',
+                        pointHoverRadius: 7, /* Slightly larger hover radius */
+                        pointHoverBackgroundColor: '#1d4ed8',
+                        pointHoverBorderColor: '#fff',
+                        segment: {
+                            borderColor: (ctx) => {
+                                if (ctx.p0DataIndex >= 2) {
+                                    return '#059669'; /* Emerald 600 for forecast line */
+                                }
+                                return '#2563eb'; /* Blue 600 for historical line */
+                            },
+                            borderDash: (ctx) => {
+                                if (ctx.p0DataIndex >= 2) {
+                                    return [6, 6]; /* Slightly larger dashes */
+                                }
+                                return [];
+                            },
+                            backgroundColor: (ctx) => {
+                                if (ctx.p0DataIndex >= 2) {
+                                    return 'rgba(16, 185, 129, 0.1)';
+                                }
+                                return 'rgba(59, 130, 246, 0.1)';
+                            }
+                        }
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Global Online Fashion Market Growth',
+                            font: {
+                                size: 20, /* Larger title font */
+                                weight: 'bold',
+                                family: 'Inter, sans-serif'
+                            },
+                            color: '#1e293b' /* Slate 900 */
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom', /* Moved legend to bottom for cleaner look */
+                            labels: {
+                                font: {
+                                    family: 'Inter',
+                                    size: 14
+                                },
+                                color: '#475569' /* Slate 700 */
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year',
+                                font: {
+                                    family: 'Inter',
+                                    size: 14
+                                },
+                                color: '#475569'
+                            },
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Inter',
+                                    size: 12
+                                },
+                                color: '#475569'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Market Value (USD Billion)',
+                                font: {
+                                    family: 'Inter',
+                                    size: 14
+                                },
+                                color: '#475569'
+                            },
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'B';
+                                },
+                                font: {
+                                    family: 'Inter',
+                                    size: 12
+                                },
+                                color: '#475569'
+                            },
+                            grid: {
+                                color: '#e2e8f0' /* Lighter grid lines */
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Feasibility Report Radar Chart
+            const renderingData = [
+                {
+                    name: "Basic PBR",
+                    quality: 3,
+                    speed: 5,
+                    requirements: 2,
+                    description: "Good, realistic lighting and material properties. Renders are fast (seconds), making it a great baseline. Ideal for quick previews where speed is critical.",
+                    recommendation: ""
+                },
+                {
+                    name: "Advanced RT (Hybrid)",
+                    quality: 4,
+                    speed: 3,
+                    requirements: 4,
+                    description: "Excellent quality with realistic global illumination and soft shadows. Requires high-end GPUs (e.g., RTX series). Renders take tens of seconds to minutes.",
+                    recommendation: "This is the most efficient method for your use case, balancing photorealistic quality with acceptable server processing time."
+                },
+                {
+                    name: "Full Path Tracing",
+                    quality: 5,
+                    speed: 1,
+                    requirements: 5,
+                    description: "Absolute photorealistic quality, the gold standard. Extremely slow (minutes to hours per image) and requires powerful GPUs or render farms. Best for hero marketing shots.",
+                    recommendation: ""
+                }
+            ];
+
+            const radarCtx = document.getElementById('renderingChart').getContext('2d');
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Quality', 'Speed', ['Low', 'Requirements']], // Changed label to array for multi-line
+                    datasets: renderingData.map((d, i) => ({
+                        label: d.name,
+                        data: [d.quality, d.speed, 6 - d.requirements], // Invert requirements for "Low Requirements" axis
+                        fill: true,
+                        backgroundColor: i === 0 ? 'rgba(5, 150, 105, 0.15)' : (i === 1 ? 'rgba(37, 99, 235, 0.15)' : 'rgba(251, 191, 36, 0.15)'), /* Emerald, Blue, Amber with 0.15 opacity */
+                        borderColor: i === 0 ? 'rgb(5, 150, 105)' : (i === 1 ? 'rgb(37, 99, 235)' : 'rgb(251, 191, 36)'),
+                        pointBackgroundColor: i === 0 ? 'rgb(5, 150, 105)' : (i === 1 ? 'rgb(37, 99, 235)' : 'rgb(251, 191, 36)'),
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: i === 0 ? 'rgb(5, 150, 105)' : (i === 1 ? 'rgb(37, 99, 235)' : 'rgb(251, 191, 36)'),
+                        hidden: false
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        },
+                        point: {
+                            radius: 5, /* Larger points */
+                            hoverRadius: 7
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: false
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                            pointLabels: {
+                                font: {
+                                    size: 15, /* Larger point labels */
+                                    weight: 'bold',
+                                    family: 'Inter, sans-serif'
+                                },
+                                color: '#334155' /* Slate 700 */
+                            },
+                            ticks: {
+                                stepSize: 1,
+                                display: false
+                            },
+                            grid: {
+                                color: '#e2e8f0' /* Lighter grid lines */
+                            },
+                            axisLabels: {
+                                font: {
+                                    family: 'Inter, sans-serif'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Inter, sans-serif',
+                                    size: 14
+                                },
+                                color: '#475569',
+                                usePointStyle: true /* Ensure color boxes are displayed */
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Revenue Share Charts
+            const revenueData = {
+                'revenueChart1': { label: 'Direct Sales', percentage: 60, color: '#059669' }, // Emerald 600
+                'revenueChart2': { label: 'Advertisements', percentage: 20, color: '#2563eb' }, // Blue 600
+                'revenueChart3': { label: 'Subscriptions', percentage: 15, color: '#f97316' }, // Orange 500
+                'revenueChart4': { label: 'Partnerships', percentage: 5, color: '#dc2626' } // Red 600
+            };
+
+            for (const chartId in revenueData) {
+                const data = revenueData[chartId];
+                const chartCtx = document.getElementById(chartId).getContext('2d');
+                new Chart(chartCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: [data.label, 'Other Revenue'],
+                        datasets: [{
+                            data: [data.percentage, 100 - data.percentage],
+                            backgroundColor: [data.color, '#e2e8f0'], // Use light gray for 'Other'
+                            borderColor: '#ffffff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false // Hide legend as percentage is shown in title/label
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            label += context.parsed + '%';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        elements: {
+                            arc: {
+                                borderWidth: 0 // No border for pie slices
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
