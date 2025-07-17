@@ -29,7 +29,7 @@
             background-color: #ffffff;
             border-radius: 1.75rem; /* More rounded */
             box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08), 0 5px 15px -5px rgba(0, 0, 0, 0.03); /* Softer, deeper shadow */
-            padding: 3rem; /* Increased padding for more breathing room */
+            /* Responsive padding handled by Tailwind classes in HTML */
             margin-bottom: 3.5rem; /* More space between sections */
             width: 100%;
             max-width: 6xl;
@@ -80,15 +80,22 @@
         }
         .pain-point-image-container {
             flex-shrink: 0;
-            width: 70px; /* Slightly smaller number box */
-            height: 70px; /* Slightly smaller number box */
-            margin-right: 2rem; /* More space */
+            width: 60px; /* Adjusted for mobile */
+            height: 60px; /* Adjusted for mobile */
+            margin-right: 1.5rem; /* Adjusted for mobile */
             border-radius: 0.75rem;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+            .pain-point-image-container {
+                width: 70px;
+                height: 70px;
+                margin-right: 2rem;
+            }
         }
         .pain-point-image-container .number {
             font-size: 2.2rem; /* Adjusted font size */
@@ -113,7 +120,7 @@
         /* Styling for the image placeholder within the overlook section */
         .overlook-image-placeholder {
             width: 100%;
-            min-height: 650px; /* Increased height for more vertical space */
+            min-height: 400px; /* Adjusted for mobile */
             background-color: #eef2f6; /* Lighter background for placeholder */
             border-radius: 1rem;
             display: flex;
@@ -125,6 +132,11 @@
             border: 2px dashed #cbd5e1; /* Softer dashed border */
             padding: 2rem;
             box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); /* Inner shadow */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .overlook-image-placeholder {
+                min-height: 650px;
+            }
         }
         /* Styling for revenue stream columns */
         .revenue-stream-card {
@@ -307,11 +319,11 @@
             background-color: #ffffff;
             border-radius: 1.75rem;
             box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08), 0 5px 15px -5px rgba(0, 0, 0, 0.03);
-            padding: 3rem;
+            /* Responsive padding handled by Tailwind classes in HTML */
             margin-bottom: 3.5rem;
             width: 100%;
             max-width: 6xl;
-            border: 1px solid #e2e8f0; /* Subtle border */
+            border: 1px solid #e2e8f0;
         }
         .pipeline-step {
             position: relative;
@@ -430,7 +442,7 @@
 
     <!-- Original Header Section with Meru title and checkmarks -->
     <div class="text-center mt-16 mb-16 px-4"> <!-- More top/bottom margin, added horizontal padding -->
-        <h1 class="text-7xl sm:text-8xl lg:text-9xl font-extrabold text-gray-900 mb-6 tracking-tight leading-none"> <!-- Larger, bolder, tighter leading -->
+        <h1 class="text-6xl sm:text-7xl lg:text-9xl font-extrabold text-gray-900 mb-6 tracking-tight leading-none"> <!-- Adjusted font size for responsiveness -->
             meru
         </h1>
         <p class="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"> <!-- Larger text, more mb, relaxed leading -->
@@ -495,8 +507,8 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         <!-- Section: Market Trend Analysis -->
-        <div id="market-trends" class="section-card">
-            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Understanding Market Trends: The Rise of Online Fashion</h2>
+        <div id="market-trends" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Understanding Market Trends: The Rise of Online Fashion</h2>
 
             <p class="text-lg text-gray-700 mb-8 leading-relaxed">
                 The global fashion industry has witnessed a significant paradigm shift, with online channels becoming increasingly dominant. This trend, accelerated by recent global events, highlights a clear consumer preference for the convenience and vast selection offered by e-commerce platforms.
@@ -522,8 +534,8 @@
         </div>
 
         <!-- Section: Addressing Key Pain Points in Online Fashion Shopping -->
-        <div id="pain-points" class="section-card">
-            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Addressing Key Pain Points in Online Fashion Shopping</h2>
+        <div id="pain-points" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Addressing Key Pain Points in Online Fashion Shopping</h2>
 
             <p class="text-lg text-gray-700 mb-8 leading-relaxed">
                 Despite the immense growth in online fashion, consumers frequently encounter significant challenges that hinder their shopping experience:
@@ -552,16 +564,16 @@
         </div>
 
         <!-- Section: Overlook -->
-        <div id="overlook" class="section-card overlook-section-card">
-            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Overlook: How the Meru App Will Look</h2>
+        <div id="overlook" class="section-card overlook-section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Overlook: How the Meru App Will Look</h2>
             <div class="overlook-image-placeholder">
                 [Insert Image of Meru App Here]
             </div>
         </div>
 
         <!-- Section: Core Concepts -->
-        <div id="core-concepts" class="section-card">
-            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Core Concepts of the Meru App</h2>
+        <div id="core-concepts" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Core Concepts of the Meru App</h2>
 
             <p class="text-lg text-gray-700 mb-10 leading-relaxed">
                 The Meru app is engineered to revolutionize your online fashion experience by directly addressing key pain points and leveraging advanced capabilities. Our core concepts are centered around delivering a personalized, immersive, and seamless journey from virtual try-on to doorstep delivery:
@@ -607,8 +619,8 @@
 
 
         <!-- New Section: How Meru Works -->
-        <div id="how-it-works" class="section-card">
-            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">How Meru Works</h2>
+        <div id="how-it-works" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">How Meru Works</h2>
 
             <p class="text-lg text-gray-700 mb-10 leading-relaxed text-center">
                 Meru simplifies the online fashion experience for users and streamlines the digital transformation for brands. Here's a step-by-step look at how our innovative platform operates:
@@ -651,7 +663,7 @@
 
             <!-- Subsection: For Brands & Meru -->
             <div class="how-it-works-subsection brand-flow">
-                <h3 class="text-3xl font-extrabold text-gray-800 mb-6 text-left"><span class="section-icon">☁️</span> For Brands & Meru: Bringing Fashion to Life Digitally</h3>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-left"><span class="section-icon">☁️</span> For Brands & Meru: Bringing Fashion to Life Digitally</h3>
                 <div class="space-y-6"> <!-- More space between steps -->
                     <div class="how-it-works-step">
                         <div class="step-number">1</div>
@@ -686,8 +698,8 @@
         </div>
 
         <!-- New Section: Identified Potential Revenue Streams -->
-        <div id="revenue-streams" class="section-card">
-            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Identified Potential Revenue Streams</h2>
+        <div id="revenue-streams" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Identified Potential Revenue Streams</h2>
 
             <p class="text-lg text-gray-700 mb-10 leading-relaxed text-center">
                 Meru's business model is designed with multiple avenues for sustainable growth and profitability, ensuring value for both users and partners.
@@ -745,8 +757,8 @@
         </div>
 
         <!-- Feasibility Report Section -->
-        <section id="feasibility-report" class="report-section-card">
-            <h2 class="text-4xl font-extrabold tracking-tight text-stone-900 text-center mb-8 leading-tight">Feasibility Report: Technical Deep Dive & Required Actions</h2>
+        <section id="feasibility-report" class="report-section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-stone-900 text-center mb-8 leading-tight">Feasibility Report: Technical Deep Dive & Required Actions</h2>
             <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 text-center mb-12 leading-relaxed">
                 This section provides a detailed assessment of the core 3D technologies required for the Meru app, outlining the technical verdict and the key actions necessary for successful implementation.
             </p>
@@ -769,7 +781,7 @@
             </div>
 
             <section id="report-overview" class="section-fade-in text-center mb-20"> <!-- More margin-bottom -->
-                <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Technical Verdict</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 sm:text-4xl">Technical Verdict</h2>
                 <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed">An assessment of the core 3D technologies required. The proposed application is ambitious but achievable through a strategic client-server architecture.</p>
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10"> <!-- Larger gap -->
                     <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-lg"> <!-- More padding, larger shadow -->
@@ -792,7 +804,7 @@
 
             <section id="report-pipeline" class="section-fade-in mb-20"> <!-- More margin-bottom -->
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">The Core Technical Pipeline</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 sm:text-4xl">The Core Technical Pipeline</h2>
                     <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed">From user scan to final render, the process is split between the user's device (client) and your backend (server). All details are displayed below.</p>
                 </div>
                 <div class="relative">
@@ -860,7 +872,7 @@
 
             <section id="report-challenges" class="section-fade-in mb-20"> <!-- More margin-bottom -->
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Client-Side Simulation: Key Challenges</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 sm:text-4xl">Client-Side Simulation: Key Challenges</h2>
                     <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed">Replicating even minimum CLO3D features for the live preview is a significant undertaking. Here are the primary technical hurdles to overcome, with all details displayed.</p>
                 </div>
                 <div class="max-w-3xl mx-auto space-y-6"> <!-- Larger space -->
@@ -896,7 +908,7 @@
 
             <section id="report-rendering" class="section-fade-in">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Server-Side Rendering Options</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 sm:text-4xl">Server-Side Rendering Options</h2>
                     <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed">For high-quality results, the server can use different rendering methods. Here's a comparison of the trade-offs between Quality, Speed, and Hardware Requirements for each option.</p>
                 </div>
                 <div class="chart-container mb-10"> <!-- More margin-bottom -->
