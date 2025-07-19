@@ -3,69 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion O2C App - Meru Pitch Deck</title>
+    <title>Meru Pitch Deck - Initial Outreach</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf2 100%); /* Softer gradient */
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf2 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding-top: 3rem; /* More top padding */
-            padding-bottom: 3rem; /* More bottom padding */
+            padding-top: 3rem;
+            padding-bottom: 3rem;
             padding-left: 1rem;
             padding-right: 1rem;
-            color: #334155; /* Slate 700 for general text */
+            color: #334155;
         }
         .section-card {
             background-color: #ffffff;
-            border-radius: 1.75rem; /* More rounded */
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08), 0 5px 15px -5px rgba(0, 0, 0, 0.03); /* Softer, deeper shadow */
-            /* Responsive padding handled by Tailwind classes in HTML */
-            margin-bottom: 3.5rem; /* More space between sections */
+            border-radius: 1.75rem;
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08), 0 5px 15px -5px rgba(0, 0, 0, 0.03);
+            margin-bottom: 3.5rem;
             width: 100%;
             max-width: 6xl;
-            border: 1px solid #e2e8f0; /* Subtle border */
-        }
-        /* Custom style for the slightly darker overlook section */
-        .overlook-section-card {
-            background-color: #fcfcfc; /* Very slightly darker white */
-            border: 1px solid #f0f4f8; /* Softer border */
+            border: 1px solid #e2e8f0;
         }
         .checkmark-icon {
             display: inline-block;
-            width: 1.35rem; /* Slightly larger */
-            height: 1.35rem; /* Slightly larger */
-            background-color: #059669; /* Emerald 600 */
+            width: 1.35rem;
+            height: 1.35rem;
+            background-color: #059669;
             border-radius: 9999px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 0.6rem; /* Slightly more space */
+            margin-right: 0.6rem;
             flex-shrink: 0;
-            box-shadow: 0 2px 5px rgba(5, 150, 105, 0.3); /* Subtle shadow for icon */
+            box-shadow: 0 2px 5px rgba(5, 150, 105, 0.3);
         }
         .checkmark-icon svg {
             fill: none;
             stroke: white;
-            stroke-width: 2.5; /* Thicker stroke */
+            stroke-width: 2.5;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-        /* Ensure canvas is responsive */
-        #marketTrendChart {
-            max-width: 100%;
-            height: auto;
-        }
-        /* Custom list style for pain points */
         .pain-point-list {
             list-style: none;
             padding-left: 0;
@@ -73,24 +59,21 @@
         .pain-point-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 2.5rem; /* More space between items */
-        }
-        .pain-point-item:last-child {
-            margin-bottom: 0;
+            margin-bottom: 2.5rem;
         }
         .pain-point-image-container {
             flex-shrink: 0;
-            width: 60px; /* Adjusted for mobile */
-            height: 60px; /* Adjusted for mobile */
-            margin-right: 1.5rem; /* Adjusted for mobile */
+            width: 60px;
+            height: 60px;
+            margin-right: 1.5rem;
             border-radius: 0.75rem;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
-        @media (min-width: 640px) { /* sm breakpoint */
+        @media (min-width: 640px) {
             .pain-point-image-container {
                 width: 70px;
                 height: 70px;
@@ -100,254 +83,29 @@
         .pain-point-text-content {
             flex-grow: 1;
         }
-        /* Adjusted styling for sub-headers within pain points */
         .pain-point-text-content h3 {
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 700; /* Bolder */
-            color: #1e293b; /* Slate 900 */
-            margin-bottom: 0.6rem; /* More space below sub-header */
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.6rem;
         }
         .pain-point-text-content p {
             margin-left: 0;
             margin-bottom: 0;
-            line-height: 1.7; /* Better readability */
-        }
-        /* Styling for the image placeholder within the overlook section */
-        .overlook-image-placeholder {
-            width: 100%;
-            min-height: 400px; /* Adjusted for mobile */
-            background-color: #eef2f6; /* Lighter background for placeholder */
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            color: #64748b; /* Slate 500 */
-            text-align: center;
-            border: 2px dashed #cbd5e1; /* Softer dashed border */
-            padding: 2rem;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); /* Inner shadow */
-        }
-        @media (min-width: 768px) { /* md breakpoint */
-            .overlook-image-placeholder {
-                min-height: 650px;
-            }
-        }
-        /* Styling for revenue stream columns */
-        .revenue-stream-card {
-            background-color: #ffffff; /* Changed to white */
-            border-radius: 1rem; /* More rounded */
-            padding: 2rem; /* More padding */
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            border: 1px solid #e2e8f0; /* Subtle border */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Hover effect */
-        }
-        .revenue-stream-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        .revenue-stream-card h3 {
-            font-size: 1.35rem; /* Larger font */
-            font-weight: 700; /* Bolder */
-            color: #1e293b; /* Slate 900 */
-            margin-bottom: 0.8rem; /* More space */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem; /* Space between number and title */
-        }
-        .revenue-stream-card .revenue-number-circle-top {
-            width: 40px; /* Size for revenue number circle */
-            height: 40px;
-            color: white;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            flex-shrink: 0;
-            margin: 0 auto 1rem auto; /* Center and add margin below */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .revenue-stream-card p {
-            font-size: 0.95rem; /* Slightly larger text */
-            color: #475569;
-            line-height: 1.6;
-        }
-        /* Styling for how it works steps */
-        .how-it-works-step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 2rem; /* More space between steps */
-            position: relative;
-        }
-        .how-it-works-step:last-child {
-            margin-bottom: 0;
-        }
-        .how-it-works-step .step-number {
-            flex-shrink: 0;
-            width: 52px; /* Larger circle for numbers */
-            height: 52px;
-            color: white;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800; /* Extra bold */
-            margin-right: 1.8rem; /* More space */
-            font-size: 1.6rem; /* Larger font size for numbers */
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 0 0 5px var(--step-bg-color), 0 4px 10px rgba(0,0,0,0.1); /* Enhanced halo and shadow */
-        }
-        /* Vertical line connecting step numbers */
-        .how-it-works-step::before {
-            content: '';
-            position: absolute;
-            left: 25px; /* Center of the 52px number - 1px for line thickness */
-            top: 52px; /* Start below the number (height of step-number) */
-            bottom: -2rem; /* Extends to the next step's top margin */
-            width: 2px;
-            background-color: #94a3b8; /* Slate 400 for the line */
-            z-index: 0;
-        }
-        .how-it-works-step:last-child::before {
-            display: none;
-        }
-
-        .how-it-works-step-content {
-            flex-grow: 1;
-        }
-        /* Modified styling for the new <p> tags instead of <h3> */
-        .how-it-works-step-content .step-title { /* New class for the bolded <p> */
-            font-size: 0.95rem; /* Same size as content */
-            font-weight: 700; /* Bolder than content */
-            color: #1e293b; /* Slate 900 */
-            margin-bottom: 0.1rem; /* Reduced margin */
-            display: block; /* Ensure it behaves like a block element */
-        }
-        .how-it-works-step-content p {
-            margin-bottom: 0; /* Ensure no extra margin for content paragraphs */
-        }
-
-        /* New styles for how it works subsections */
-        .how-it-works-subsection {
-            background-color: #fefefe; /* Very light background for subsections */
-            border-radius: 1.25rem; /* More rounded */
-            padding: 2.5rem; /* More padding */
-            margin-bottom: 3rem; /* More space */
-            border: 1px solid #e2e8f0; /* Subtle border */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* Softer shadow */
-        }
-        .how-it-works-subsection.user-flow {
-            background-color: #eff6ff; /* Lightest Blue for User Flow (Blue 50) */
-            --step-bg-color: #eff6ff;
-            border-color: #dbeafe; /* Blue 100 */
-        }
-        .how-it-works-subsection.user-flow .how-it-works-step .step-number {
-             background-color: #2563eb; /* Blue 600 */
-        }
-        .how-it-works-subsection.brand-flow {
-            background-color: #fdf2f8; /* Lightest Pink for Brand Flow (Pink 50) */
-            --step-bg-color: #fdf2f8;
-            border-color: #fce7f3; /* Pink 100 */
-        }
-        .how-it-works-subsection.brand-flow .how-it-works-step .step-number {
-             background-color: #e879f9; /* Fuchsia 400 */
-        }
-
-        .how-it-works-subsection h3 {
-            text-align: left;
-            margin-bottom: 1.8rem; /* More space */
-            font-size: 2.1rem; /* Larger heading */
-            font-weight: 800; /* Extra bold */
-            color: #1a202c; /* Darker text for headings */
-            display: flex; /* Enable flex for icon alignment */
-            align-items: center; /* Vertically align icon with text */
-            gap: 0.75rem; /* Space between icon and text */
-        }
-        .how-it-works-subsection h3 .section-icon {
-            font-size: 2.2rem; /* Size of the icon */
-            line-height: 1; /* Ensure icon doesn't affect line height too much */
-            color: #64748b; /* Slate 500 for icons */
-        }
-        .how-it-works-subsection .space-y-4 {
-            text-align: left;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Styles from Feasibility Report - Website Preview.html */
-        .section-fade-in {
-            opacity: 1;
-            transform: translateY(0);
-            transition: none;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 550px; /* Slightly larger chart */
-            margin-left: auto;
-            margin-right: auto;
-            height: 420px; /* Taller chart for legend */
-            max-height: 500px;
-            background-color: #f8fafc; /* Light background for chart area */
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 450px; /* Ensure height for larger screens */
-            }
-        }
-        /* Specific styles for the feasibility report sections */
-        .report-section-card {
-            background-color: #ffffff;
-            border-radius: 1.75rem;
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.08), 0 5px 15px -5px rgba(0, 0, 0, 0.03);
-            /* Responsive padding handled by Tailwind classes in HTML */
-            margin-bottom: 3.5rem;
-            width: 100%;
-            max-width: 6xl;
-            border: 1px solid #e2e8f0;
-        }
-        .pipeline-step {
-            position: relative;
-            padding: 1.5rem; /* More padding */
-            border-radius: 1rem; /* More rounded */
-            background-color: #fefefe; /* Lighter background */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
-            border: 1px solid #e2e8f0; /* Subtle border */
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .pipeline-step:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        .pipeline-step .details {
-            display: block !important;
+            line-height: 1.7;
         }
         .core-concept-card {
             background-color: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 1rem; /* More rounded */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* Subtle shadow */
-            padding: 1.5rem; /* Padding for the card content */
-            position: relative; /* For positioning the number circle */
-            padding-top: 2.5rem; /* Make space for the number circle, adjusted */
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            padding: 1.5rem;
+            position: relative;
+            padding-top: 2.5rem;
         }
         .core-concept-number-circle {
             position: absolute;
-            top: -1.5rem; /* Adjusted to place it higher */
+            top: -1.5rem;
             left: 50%;
             transform: translateX(-50%);
             width: 48px;
@@ -359,196 +117,83 @@
             justify-content: center;
             font-weight: 800;
             font-size: 1.5rem;
-            z-index: 20; /* Ensure it's on top */
+            z-index: 20;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border: 3px solid #ffffff; /* White border around the circle */
+            border: 3px solid #ffffff;
         }
         .core-concept-card h3 {
             font-weight: 700;
             color: #1e293b;
             margin-bottom: 0.75rem;
-            text-align: center; /* Center the heading */
-            font-size: 1.35rem; /* Larger font for concept titles */
+            text-align: center;
+            font-size: 1.35rem;
         }
         .core-concept-card p {
             font-size: 0.95rem;
             color: #475569;
             line-height: 1.6;
-            text-align: left; /* Align description left */
+            text-align: left;
         }
-
-        .render-option-card {
-            background-color: #ffffff;
-            border-radius: 1rem; /* More rounded */
-            padding: 2rem; /* More padding */
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .render-option-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        .render-option-card h3 {
-            font-size: 1.35rem; /* Larger font */
-            font-weight: 700;
-            color: #1e293b; /* Darker text */
-            margin-bottom: 0.6rem;
-        }
-        .render-option-card p {
-            font-size: 0.95rem; /* Slightly larger text */
-            color: #475569;
-            line-height: 1.6;
-        }
-        .render-option-card .recommendation {
-            margin-top: 1.2rem; /* More space */
-            padding: 0.9rem; /* More padding */
-            background-color: #ecfdf5; /* Lighter green */
-            color: #047857; /* Darker green */
-            border-radius: 0.75rem; /* More rounded */
-            font-size: 0.9rem; /* Slightly larger text */
-            font-weight: 600;
-            border: 1px solid #a7f3d0;
-        }
-
         /* Animation for video slide-in */
         @keyframes slideInFromBottom {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-
-        .video-slide-in {
-            animation: slideInFromBottom 1s ease-out forwards;
-        }
-
+        .video-slide-in { animation: slideInFromBottom 1s ease-out forwards; }
         /* Modal styles */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         }
-        .modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.show { opacity: 1; visibility: visible; }
         .modal-content {
-            background-color: #ffffff;
-            padding: 2.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            transform: translateY(-20px);
-            transition: transform 0.3s ease-in-out;
+            background-color: #ffffff; padding: 2.5rem; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 500px; width: 90%; text-align: center; transform: translateY(-20px); transition: transform 0.3s ease-in-out;
         }
-        .modal-overlay.show .modal-content {
-            transform: translateY(0);
-        }
-
+        .modal-overlay.show .modal-content { transform: translateY(0); }
         /* Hamburger menu specific styles */
         .hamburger-menu {
-            position: fixed;
-            top: 0;
-            left: -300px; /* Hidden by default */
-            width: 300px;
-            height: 100%;
-            background-color: #ffffff;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-            transition: left 0.3s ease-in-out;
-            z-index: 999;
-            padding-top: 5rem; /* Space for fixed header */
-            overflow-y: auto; /* Enable scrolling for long menus */
+            position: fixed; top: 0; left: -300px; width: 300px; height: 100%;
+            background-color: #ffffff; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            transition: left 0.3s ease-in-out; z-index: 999; padding-top: 5rem; overflow-y: auto;
         }
-
-        .hamburger-menu.open {
-            left: 0;
-        }
-
+        .hamburger-menu.open { left: 0; }
         .hamburger-icon {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 0.75rem; /* Padding for clickable area */
-            border-radius: 0.5rem;
+            cursor: pointer; display: flex; align-items: center; padding: 0.75rem; border-radius: 0.5rem;
             transition: background-color 0.2s ease-in-out;
         }
-
-        .hamburger-icon:hover {
-            background-color: #f0f4f8; /* Light gray on hover */
-        }
-
+        .hamburger-icon:hover { background-color: #f0f4f8; }
         .hamburger-icon svg {
-            width: 28px; /* Larger icon */
-            height: 28px;
-            fill: none;
-            stroke: #334155; /* Slate 700 */
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+            width: 28px; height: 28px; fill: none; stroke: #334155; stroke-width: 2;
+            stroke-linecap: round; stroke-linejoin: round;
         }
-
         .hamburger-menu-links a {
-            display: block;
-            padding: 0.75rem 1.5rem;
-            color: #475569; /* Slate 700 */
-            font-weight: 500;
+            display: block; padding: 0.75rem 1.5rem; color: #475569; font-weight: 500;
             transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-            border-radius: 0.5rem;
-            margin: 0.25rem 0; /* Small vertical margin */
+            border-radius: 0.5rem; margin: 0.25rem 0;
         }
-
         .hamburger-menu-links a:hover {
-            background-color: #e0e7ff; /* Light blue on hover */
-            color: #2563eb; /* Blue 600 */
+            background-color: #e0e7ff;
+            color: #2563eb;
         }
-
-        /* Overlay for when menu is open */
         .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); z-index: 998; opacity: 0; visibility: hidden;
             transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         }
-
-        .menu-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
+        .menu-overlay.show { opacity: 1; visibility: visible; }
     </style>
 </head>
 <body>
 
     <header class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-stone-200 shadow-sm w-full">
-        <nav class="max-w-full mx-auto px-6 lg:px-8"> <!-- Changed max-w-7xl to max-w-full -->
-            <div class="flex justify-between items-center h-18"> <!-- Slightly taller nav -->
+        <nav class="max-w-full mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-18">
                 <div class="flex-shrink-0">
                     <h1 class="text-xl font-bold text-stone-900 leading-tight">Meru App<br>Pitch Deck</h1>
                 </div>
                 <div class="flex items-center">
-                    <!-- Hamburger menu trigger -->
                     <div id="hamburger-trigger" class="flex items-center space-x-2 cursor-pointer p-2 rounded-md hover:bg-gray-100 transition-colors duration-200">
                         <span class="text-lg font-medium text-gray-700">Jump to Section</span>
                         <div class="hamburger-icon">
@@ -562,7 +207,6 @@
         </nav>
     </header>
 
-    <!-- Hamburger Menu (Off-canvas sidebar) -->
     <div id="hamburger-menu" class="hamburger-menu">
         <div class="p-6">
             <h3 class="text-2xl font-bold text-gray-900 mb-6">Sections</h3>
@@ -570,88 +214,43 @@
                 <a href="#market-trends" class="block text-blue-600 hover:bg-blue-50 hover:text-blue-800 px-4 py-2 rounded-md transition-colors duration-200">Market Trends</a>
                 <a href="#pain-points" class="block text-pink-600 hover:bg-pink-50 hover:text-pink-800 px-4 py-2 rounded-md transition-colors duration-200">Pain Points</a>
                 <a href="#core-concepts" class="block text-teal-600 hover:bg-teal-50 hover:text-teal-800 px-4 py-2 rounded-md transition-colors duration-200">Core Concepts</a>
-                <a href="#ar-ai-limitations" class="block text-purple-600 hover:bg-purple-50 hover:text-purple-800 px-4 py-2 rounded-md transition-colors duration-200">AR/AI Limitations</a>
-                <a href="#how-it-works" class="block text-indigo-600 hover:bg-indigo-50 hover:text-indigo-800 px-4 py-2 rounded-md transition-colors duration-200">How It Works</a>
-                <a href="#revenue-streams" class="block text-orange-600 hover:bg-orange-50 hover:text-orange-800 px-4 py-2 rounded-md transition-colors duration-200">Revenue Streams</a>
-                <a href="#feasibility-report" class="block text-red-600 hover:bg-red-50 hover:text-red-800 px-4 py-2 rounded-md transition-colors duration-200">Feasibility Report</a>
                 <a href="#contact-us" class="block text-gray-600 hover:bg-gray-50 hover:text-gray-800 px-4 py-2 rounded-md transition-colors duration-200">Contact Us</a>
             </div>
         </div>
     </div>
-
-    <!-- Menu Overlay -->
     <div id="menu-overlay" class="menu-overlay"></div>
 
-
-    <!-- Original Header Section with Meru title and checkmarks -->
-    <div class="text-center mt-16 mb-16 px-4"> <!-- More top/bottom margin, added horizontal padding -->
-        <h1 class="text-6xl sm:text-7xl lg:text-9xl font-extrabold text-gray-900 mb-6 tracking-tight leading-none"> <!-- Adjusted font size for responsiveness -->
-            meru
-        </h1>
-        <p class="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"> <!-- Larger text, more mb, relaxed leading -->
-            One stop platform for all your fashion needs
-        </p>
-
-        <!-- Features List -->
-        <div class="flex flex-wrap justify-center gap-x-10 gap-y-5 text-lg text-gray-700"> <!-- Larger gaps -->
+    <div class="text-center mt-16 mb-16 px-4">
+        <h1 class="text-6xl sm:text-7xl lg:text-9xl font-extrabold text-gray-900 mb-6 tracking-tight leading-none">meru</h1>
+        <p class="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">One stop platform for all your fashion needs</p>
+        <div class="flex flex-wrap justify-center gap-x-10 gap-y-5 text-lg text-gray-700">
             <div class="flex items-center">
-                <span class="checkmark-icon">
-                    <svg viewBox="0 0 24 24" class="w-4 h-4">
-                        <path d="M5 13l4 4L19 7"></path>
-                    </svg>
-                </span>
+                <span class="checkmark-icon"><svg viewBox="0 0 24 24" class="w-4 h-4"><path d="M5 13l4 4L19 7"></path></svg></span>
                 <span>Physics-enabled Live Dress-ups</span>
             </div>
             <div class="flex items-center">
-                <span class="checkmark-icon">
-                    <svg viewBox="0 0 24 24" class="w-4 h-4">
-                        <path d="M5 13l4 4L19 7"></path>
-                    </svg>
-                </span>
+                <span class="checkmark-icon"><svg viewBox="0 0 24 24" class="w-4 h-4"><path d="M5 13l4 4L19 7"></path></svg></span>
                 <span>Order-to-Cash</span>
             </div>
             <div class="flex items-center">
-                <span class="checkmark-icon">
-                    <svg viewBox="0 0 24 24" class="w-4 h-4">
-                        <path d="M5 13l4 4L19 7"></path>
-                    </svg>
-                </span>
+                <span class="checkmark-icon"><svg viewBox="0 0 24 24" class="w-4 h-4"><path d="M5 13l4 4L19 7"></path></svg></span>
                 <span>Live 3D Custom Model</span>
             </div>
             <div class="flex items-center">
-                <span class="checkmark-icon">
-                    <svg viewBox="0 0 24 24" class="w-4 h-4">
-                        <path d="M5 13l4 4L19 7"></path>
-                    </svg>
-                </span>
+                <span class="checkmark-icon"><svg viewBox="0 0 24 24" class="w-4 h-4"><path d="M5 13l4 4L19 7"></path></svg></span>
                 <span>Real-dimension clothings</span>
             </div>
             <div class="flex items-center">
-                <span class="checkmark-icon">
-                    <svg viewBox="0 0 24 24" class="w-4 h-4">
-                        <path d="M5 13l4 4L19 7"></path>
-                    </svg>
-                </span>
+                <span class="checkmark-icon"><svg viewBox="0 0 24 24" class="w-4 h-4"><path d="M5 13l4 4L19 7"></path></svg></span>
                 <span>API Integrated</span>
             </div>
-            <!-- New Feature Added -->
             <div class="flex items-center">
-                <span class="checkmark-icon">
-                    <svg viewBox="0 0 24 24" class="w-4 h-4">
-                        <path d="M5 13l4 4L19 7"></path>
-                    </svg>
-                </span>
+                <span class="checkmark-icon"><svg viewBox="0 0 24 24" class="w-4 h-4"><path d="M5 13l4 4L19 7"></path></svg></span>
                 <span>Door-to-door delivery</span>
             </div>
         </div>
-
-        <!-- New sub-header below checkmarks -->
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-800 mt-16 mb-8 tracking-tight">
-            A dress up simulation with REAL CLOTHES for THE REAL YOU.
-        </h2>
-
-        <!-- WebM videos section -->
-        <div id="app-preview" class="flex flex-col md:flex-row justify-center items-center gap-6 mt-8 mb-8 px-4"> <!-- Reduced mb-16 to mb-8 -->
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-800 mt-16 mb-8 tracking-tight">A dress up simulation with REAL CLOTHES for THE REAL YOU.</h2>
+        <div id="app-preview" class="flex flex-col md:flex-row justify-center items-center gap-6 mt-8 mb-8 px-4">
             <video class="w-full md:w-1/3 rounded-xl shadow-lg video-slide-in" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
                 <source src="https://meruapp.github.io/Meru_Pitch_Deck/preview1.webm" type="video/webm">
                 Your browser does not support the video tag.
@@ -667,492 +266,79 @@
         </div>
     </div>
 
-
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-        <!-- Section: Market Trend Analysis -->
-        <div id="market-trends" class="section-card p-6 sm:p-8 lg:p-12 mt-8"> <!-- Reduced mt-16 to mt-8 -->
+        <div id="market-trends" class="section-card p-6 sm:p-8 lg:p-12 mt-8">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Understanding Market Trends: The Rise of Online Fashion</h2>
-
-            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                The global fashion industry has witnessed a significant paradigm shift, with online channels becoming increasingly dominant. This trend, accelerated by recent global events, highlights a clear consumer preference for the convenience and vast selection offered by e-commerce platforms.
-            </p>
-
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">The global fashion industry has witnessed a significant paradigm shift, with online channels becoming increasingly dominant. This trend, accelerated by recent global events, highlights a clear consumer preference for the convenience and vast selection offered by e-commerce platforms.</p>
             <h3 class="text-2xl font-bold text-gray-800 mb-6">Key Growth Metrics:</h3>
-            <ul class="list-disc list-inside text-lg text-gray-700 mb-10 space-y-3"> <!-- Larger text, more space -->
+            <ul class="list-disc list-inside text-lg text-gray-700 mb-10 space-y-3">
                 <li>Pre-COVID (2019): The global fashion e-commerce market was valued at approximately <strong>$536.79 billion</strong>.</li>
                 <li>Post-COVID Surge (2021): This figure saw substantial growth, reaching around <strong>$663.80 billion</strong>, as consumers rapidly adopted online shopping.</li>
                 <li>Current Landscape (2024): The market continues its upward trajectory, projected to hit <strong>$801.60 billion</strong>.</li>
                 <li>Future Forecast (2029): Experts predict continued robust expansion, with the market expected to reach an impressive <strong>$1,232.40 billion</strong>.</li>
             </ul>
-
-            <div class="flex justify-center mb-10"> <!-- More margin-bottom -->
-                <canvas id="marketTrendChart" class="w-full max-w-2xl rounded-lg shadow-md"></canvas>
-            </div>
-            <p class="text-sm text-gray-500 text-center mb-3">
-                This chart visually represents the growth of the global online fashion market over time, from pre-COVID figures to future forecasts. The dashed line and different fill color indicate the projected growth.
-            </p>
-            <p class="text-sm text-gray-500 text-center italic mb-12"> <!-- More margin-bottom -->
-                Please note: The data presented in this chart is compiled using AI and is for illustrative purposes only. All figures are estimates.
-            </p>
+            <p class="text-sm text-gray-500 text-center italic mb-12">Please note: The data presented in this chart is compiled using AI and is for illustrative purposes only. All figures are estimates.</p>
         </div>
 
-        <!-- Section: Addressing Key Pain Points in Online Fashion Shopping -->
-        <div id="pain-points" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+        <div id="pain-points" class="section-card p-6 sm:p-8 lg:p-12">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Addressing Key Pain Points in Online Fashion Shopping</h2>
-
-            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                Despite the immense growth in online fashion, consumers frequently encounter significant challenges that hinder their shopping experience:
-            </p>
-
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">Despite the immense growth in online fashion, consumers frequently encounter significant challenges that hinder their shopping experience:</p>
             <ul class="pain-point-list text-gray-700">
                 <li class="pain-point-item">
-                    <div class="pain-point-image-container" style="background-color: #FFD1DC;"> <!-- Light Pink -->
-                        <span class="number">1.</span>
-                    </div>
+                    <div class="pain-point-image-container" style="background-color: #FFD1DC;"></div>
                     <div class="pain-point-text-content">
                         <h3 class="text-xl font-bold text-gray-900">Fit Discrepancy</h3>
-                        <p class="text-base text-gray-700">A prevalent issue is the uncertainty of fit. When clothes finally arrive, customers often discover they don't fit correctly due to varying measurement methods, brand-specific sizing, or simple errors in product descriptions. This leads to high return rates and customer dissatisfaction.</p>
+                        <p class="text-base text-gray-700">A prevalent issue is the uncertainty of fit. When clothes finally arrive, customers often discover they don't fit correctly. This leads to high return rates and customer dissatisfaction.</p>
                     </div>
                 </li>
                 <li class="pain-point-item">
-                    <div class="pain-point-image-container" style="background-color: #D1E7FF;"> <!-- Light Blue -->
-                        <span class="number">2.</span>
-                    </div>
+                    <div class="pain-point-image-container" style="background-color: #D1E7FF;"></div>
                     <div class="pain-point-text-content">
                         <h3 class="text-xl font-bold text-gray-900">Styling Challenges</h3>
-                        <p class="text-base text-gray-700">Consumers typically visualize individual garments in isolation. It's challenging to envision how different pieces will combine to form a complete outfit, making the process of styling an entire look cumbersome and often resulting in uncoordinated purchases.</p>
+                        <p class="text-base text-gray-700">It's challenging to envision how different pieces will combine to form a complete outfit, making the process of styling cumbersome and often resulting in uncoordinated purchases.</p>
                     </div>
                 </li>
             </ul>
         </div>
 
-        <!-- Removed Section: Overlook -->
-
-        <!-- Section: Core Concepts -->
-        <div id="core-concepts" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
+        <div id="core-concepts" class="section-card p-6 sm:p-8 lg:p-12">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Core Concepts of the Meru App</h2>
-
-            <p class="text-lg text-gray-700 mb-10 leading-relaxed">
-                The Meru app is engineered to revolutionize your online fashion experience by directly addressing key pain points and leveraging advanced capabilities. Our core concepts are centered around delivering a personalized, immersive, and seamless journey from virtual try-on to doorstep delivery:
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"> <!-- Adjusted grid for 2 columns, centered -->
-                <!-- Concept 1 -->
+            <p class="text-lg text-gray-700 mb-10 leading-relaxed">The Meru app is engineered to revolutionize your online fashion experience by directly addressing key pain points and leveraging advanced capabilities.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div class="core-concept-card">
                     <div class="core-concept-number-circle" style="background-color: #f97316;">1</div>
-                    <h3 class="font-bold text-lg text-stone-900">Your Personalized 3D Body Model: Eliminating Fit Discrepancy</h3>
-                    <p class="text-base text-stone-700 leading-relaxed">Meru creates a precise <strong>Live 3D Custom Model</strong> of *your* unique body, capturing your exact dimensions from simple photographs. This ensures that every garment you virtually try on is rendered to your <strong>Real-dimension clothings</strong>, eliminating guesswork and the frustration of ill-fitting clothes upon arrival. Say goodbye to returns due to sizing issues!</p>
+                    <h3 class="font-bold text-lg text-stone-900">Your Personalized 3D Body Model</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Meru creates a precise <strong>Live 3D Custom Model</strong> of *your* unique body, capturing your exact dimensions from simple photographs. This ensures that every garment you virtually try on is rendered to your <strong>Real-dimension clothings</strong>, eliminating guesswork and the frustration of ill-fitting clothes upon arrival.</p>
                 </div>
-
-                <!-- Concept 2 -->
                 <div class="core-concept-card">
                     <div class="core-concept-number-circle" style="background-color: #2563eb;">2</div>
-                    <h3 class="font-bold text-lg text-stone-900">Dynamic Virtual Try-On & Outfit Styling: Overcoming Styling Challenges</h3>
-                    <p class="text-base text-stone-700 leading-relaxed">Experience clothing virtually with <strong>Physics-enabled Live Dress-ups</strong>. See how fabrics drape, move, and interact with your personalized 3D model in real-time. This allows you to effortlessly combine individual pieces into complete outfits, empowering you to style and visualize your perfect look before you buy, solving the challenge of imagining combinations.</p>
+                    <h3 class="font-bold text-lg text-stone-900">Dynamic Virtual Try-On & Outfit Styling</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Experience clothing virtually with <strong>Physics-enabled Live Dress-ups</strong>. See how fabrics drape, move, and interact with your personalized 3D model in real-time. This allows you to effortlessly combine individual pieces into complete outfits, empowering you to style and visualize your perfect look before you buy.</p>
                 </div>
-
-                <!-- Concept 3 -->
                 <div class="core-concept-card">
                     <div class="core-concept-number-circle" style="background-color: #10b981;">3</div>
-                    <h3 class="font-bold text-lg text-stone-900">Photorealistic Preview & Seamless Purchase: Confidence and Convenience</h3>
-                    <p class="text-base text-stone-700 leading-relaxed">Beyond interactive previews, Meru generates high-quality, photorealistic images of garments on your model, ensuring you see the exact look and feel of the clothing. Once satisfied, our integrated <strong>Order-to-Cash</strong> system and <strong>API Integrated</strong> connectivity ensure a smooth purchase process, followed by convenient <strong>Door-to-door delivery</strong>. This comprehensive approach provides confidence in your purchasing decisions and unparalleled convenience.</p>
+                    <h3 class="font-bold text-lg text-stone-900">Seamless Purchase & Delivery</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Once satisfied, our integrated <strong>Order-to-Cash</strong> system and <strong>API Integrated</strong> connectivity ensure a smooth purchase process, followed by convenient <strong>Door-to-door delivery</strong>. This comprehensive approach provides confidence in your purchasing decisions and unparalleled convenience.</p>
                 </div>
-
-                <!-- Concept 4 -->
                 <div class="core-concept-card">
                     <div class="core-concept-number-circle" style="background-color: #ef4444;">4</div>
-                    <h3 class="font-bold text-lg text-stone-900">Your Digital Lookbook: Share & Get Feedback</h3>
-                    <p class="text-base text-stone-700 leading-relaxed">Curate your favorite virtual outfits and looks within your personalized digital Lookbook. Easily share these looks with friends and family via social media or direct messaging to gather feedback, or simply share your style inspiration even before making a purchase. Your Lookbook becomes a dynamic canvas for your fashion journey.</p>
-                </div>
-
-                <!-- Concept 5 -->
-                <div class="core-concept-card text-center"> <!-- Added text-center here -->
-                    <div class="core-concept-number-circle" style="background-color: #8b5cf6;">5</div>
-                    <h3 class="font-bold text-lg text-stone-900">Creator Studio: Empowering Stylists & Curators</h3>
-                    <p class="text-base text-stone-700 leading-relaxed">Meru will feature a dedicated "Creator Studio" similar to platforms like YouTube, empowering professional stylists and fashion curators to build and share their own digital lookbooks. This feature will allow them to create curated outfit recommendations for general users, expanding content variety, fostering a vibrant community, and driving organic engagement through their existing followers.</p>
+                    <h3 class="font-bold text-lg text-stone-900">Your Digital Lookbook</h3>
+                    <p class="text-base text-stone-700 leading-relaxed">Curate your favorite virtual outfits and looks within your personalized digital Lookbook. Easily share these looks with friends and family to gather feedback, or simply share your style inspiration even before making a purchase.</p>
                 </div>
             </div>
         </div>
 
-        <!-- New Section: Why Existing AR/AI Solutions Fall Short -->
-        <div id="ar-ai-limitations" class="section-card p-6 sm:p-8 lg:p-12">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Why Existing AR/AI Solutions Fall Short</h2>
-
-            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
-                Many major clothing brands have adopted augmented reality (AR) and artificial intelligence (AI) for garment visualization. While innovative, these solutions often miss the mark in truly addressing core consumer pain points. Brands like <strong>Nike, Uniqlo, Gap, Zara, ASOS, H&M, and Adidas</strong> have implemented various forms of virtual try-on or AI-generated imagery.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="core-concept-card p-6">
-                    <h3 class="font-bold text-lg text-stone-900">Limited Fit Accuracy with AR Overlays</h3>
-                    <p class="text-base text-stone-700 leading-relaxed">
-                        Current AR try-on apps, such as those used by Nike or Zara, typically overlay a 2D image of a garment onto a user's live camera feed. While visually appealing, this method doesn't account for the user's actual body dimensions, unique curves, or how fabric will truly drape and fit. The result is often a flat, imprecise visualization that fails to eliminate the fundamental "fit discrepancy" pain point, leading to continued returns and dissatisfaction.
-                    </p>
-                </div>
-                <div class="core-concept-card p-6">
-                    <h3 class="font-bold text-lg text-stone-900">Generic Styling & Lack of Personalization in AI Imagery</h3>
-                    <p class="text-base text-stone-700 leading-relaxed">
-                        AI image generation, used by brands like ASOS or H&M, creates photorealistic images of garments on generic models. While impressive, these images lack personalization to the individual user's body shape and existing wardrobe. More importantly, they don't offer interactive styling capabilities. Users cannot mix and match different items on their own body model to create and visualize complete outfits, leaving the "styling challenges" pain point largely unaddressed.
-                    </p>
-                </div>
-                <div class="core-concept-card p-6 md:col-span-2"> <!-- Span two columns for a wider card -->
-                    <h3 class="font-bold text-lg text-stone-900">Meru's Differentiating Approach</h3>
-                    <p class="text-base text-stone-700 leading-relaxed">
-                        Unlike these existing solutions, Meru's core strength lies in its ability to create a <strong>Live 3D Custom Model</strong> of the *user's actual body* and provide <strong>Physics-enabled Live Dress-ups</strong> with <strong>Real-dimension clothings</strong>. This ensures unparalleled accuracy in fit and allows for dynamic, interactive outfit styling, directly tackling the fundamental issues that current AR and AI solutions overlook.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- New Section: How Meru Works -->
-        <div id="how-it-works" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">How Meru Works</h2>
-
-            <p class="text-lg text-gray-700 mb-10 leading-relaxed text-center">
-                Meru simplifies the online fashion experience for users and streamlines the digital transformation for brands. Here's a step-by-step look at how our innovative platform operates:
-            </p>
-
-            <!-- Subsection: For Users -->
-            <div class="how-it-works-subsection user-flow">
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-left"><span class="section-icon">📱</span> For Users: Your Personalized Fashion Journey</h3>
-                <div class="space-y-6 mb-8"> <!-- More space between steps -->
-                    <div class="how-it-works-step">
-                        <div class="step-number">1</div>
-                        <div class="how-it-works-step-content">
-                            <p class="step-title">Create Your Digital Twin</p>
-                            <p>Easily scan your body using your smartphone camera to create a precise 3D digital model of yourself. Our app includes controls to guide you through the process, ensuring a high-quality scan for accurate virtual try-ons.</p>
-                        </div>
-                    </div>
-                    <div class="how-it-works-step">
-                        <div class="step-number">2</div>
-                        <div class="how-it-works-step-content">
-                            <p class="step-title">Explore & Style from Extensive Catalogs</p>
-                            <p>Once your digital model is ready, dive into Meru's extensive catalog of fashion items. Browse, mix, and match clothes directly on your personalized 3D body, seeing exactly how each piece fits and drapes in real-time.</p>
-                        </div>
-                    </div>
-                    <div class="how-it-works-step">
-                        <div class="step-number">3</div>
-                        <div class="how-it-works-step-content">
-                            <p class="step-title">Save Looks or Add to Cart</p>
-                            <p>Found an outfit you love? Save your styled combinations to your digital Lookbook to revisit later or share with friends. Ready to buy? Simply add your chosen items to the cart.</p>
-                        </div>
-                    </div>
-                    <div class="how-it-works-step">
-                        <div class="step-number">4</div>
-                        <div class="how-it-works-step-content">
-                            <p class="step-title">Seamless Checkout & Delivery</p>
-                            <p>Complete your purchase securely within the app using our integrated payment gateway. Once your order is confirmed, the clothing items will be delivered directly to your doorstep.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Subsection: For Brands & Meru -->
-            <div class="how-it-works-subsection brand-flow">
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-left"><span class="section-icon">☁️</span> For Brands & Meru: Bringing Fashion to Life Digitally</h3>
-                <div class="space-y-6"> <!-- More space between steps -->
-                    <div class="how-it-works-step">
-                        <div class="step-number">1</div>
-                        <div class="how-it-works-step-content">
-                            <p class="step-title">Brand Collection Submission</p>
-                            <p>Fashion brands send us physical samples of their collections. If available, original pattern designs and detailed dimension information are also submitted to streamline the digital replication process.</p>
-                        </div>
-                    </div>
-                    <div class="how-it-works-step">
-                        <div class="step-number">2</div>
-                        <div class="how-it-works-step-content">
-                            <p class="step-title">3D Model Creation & Optimization</p>
-                            <p>Our team, leveraging advanced 3D software like CLO3D, transforms physical garments and pattern data into highly realistic, physics-enabled 3D models. These models are optimized for seamless performance within the app.</p>
-                        </div>
-                    </div>
-                    <div class="how-it-works-step">
-                        <div class="step-number">3</div>
-                        <div class="how-it-works-step-content">
-                            <p class="step-title">Catalog Integration & API Linking</p>
-                            <p>The completed 3D garment models are uploaded to Meru's digital catalog, making them instantly available for users. Our IT experts will work to integrate our order system directly with brand warehouses via APIs, ensuring efficient order fulfillment and delivery.</p>
-                        </div>
-                    </div>
-                    <div class="how-it-works-step">
-                        <div class="step-number">4</div>
-                        <div class="how-it-works-step-content">
-                            <p class="step-title">Sales & Payment Processing</p>
-                            <p>When a user purchases an item, Meru processes the sale. Brands receive their agreed-upon share of the sales revenue within a predefined payment cycle, ensuring a smooth and transparent financial flow.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- New Section: Identified Potential Revenue Streams -->
-        <div id="revenue-streams" class="section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Identified Potential Revenue Streams</h2>
-
-            <p class="text-lg text-gray-700 mb-10 leading-relaxed text-center">
-                Meru's business model is designed with multiple avenues for sustainable growth and profitability, ensuring value for both users and partners.
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> <!-- Larger gap -->
-                <!-- Revenue Stream 1: Direct Sales - Tiered Commissions -->
-                <div class="revenue-stream-card">
-                    <div class="revenue-number-circle-top" style="background-color: #059669;">1</div>
-                    <h3>Direct Sales - Tiered Commissions</h3>
-                    <p class="text-sm text-gray-700 mb-4">
-                        Earn commissions from the sale of individual clothing pieces directly through the app. A tiered commission structure can incentivize higher sales volumes.
-                    </p>
-                    <div class="revenue-chart-container w-full h-32">
-                        <canvas id="revenueChart1"></canvas>
-                    </div>
-                </div>
-
-                <!-- Revenue Stream 2: Targeted Fashion Advertisements -->
-                <div class="revenue-stream-card">
-                    <div class="revenue-number-circle-top" style="background-color: #2563eb;">2</div>
-                    <h3>Targeted Fashion Advertisements</h3>
-                    <p class="text-sm text-gray-700 mb-4">
-                        Generate revenue by hosting highly relevant, fashion-specific advertisements, ensuring a non-intrusive and valuable experience for users.
-                    </p>
-                    <div class="revenue-chart-container w-full h-32">
-                        <canvas id="revenueChart2"></canvas>
-                    </div>
-                </div>
-
-                <!-- Revenue Stream 3: Premium VIP Subscriptions -->
-                <div class="revenue-stream-card">
-                    <div class="revenue-number-circle-top" style="background-color: #f97316;">3</div>
-                    <h3>Premium VIP Subscriptions</h3>
-                    <p class="text-sm text-gray-700 mb-4">
-                        Offer tiered subscription plans (e.g., yearly, 6-month, 3-month) providing access to exclusive VIP features, enhanced Lookbook functionalities, and premium content.
-                    </p>
-                    <div class="revenue-chart-container w-full h-32">
-                        <canvas id="revenueChart3"></canvas>
-                    </div>
-                </div>
-
-                <!-- Revenue Stream 4: Exclusive Vendor Partnerships -->
-                <div class="revenue-stream-card">
-                    <div class="revenue-number-circle-top" style="background-color: #dc2626;">4</div>
-                    <h3>Exclusive Vendor Partnerships</h3>
-                    <p class="text-sm text-gray-700 mb-4">
-                        Forge exclusive agreements with select fashion brands and designers, offering them prime placement, unique collaboration opportunities, or data insights in exchange for a fee or higher commission rates.
-                    </p>
-                    <div class="revenue-chart-container w-full h-32">
-                        <canvas id="revenueChart4"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Feasibility Report Section -->
-        <section id="feasibility-report" class="report-section-card p-6 sm:p-8 lg:p-12"> <!-- Added responsive padding -->
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-stone-900 text-center mb-8 leading-tight">Feasibility Report: Technical Deep Dive & Required Actions</h2>
-            <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 text-center mb-12 leading-relaxed font-normal">
-                This section provides a detailed assessment of the core 3D technologies required for the Meru app, outlining the technical verdict and the key actions necessary for successful implementation.
-            </p>
-
-            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Before we move on:</h3>
-            <!-- CLO3D Explanation Card -->
-            <div class="bg-blue-50 p-6 rounded-xl border border-blue-200 shadow-md mb-12 max-w-3xl mx-auto text-left">
-                <h3 class="text-xl font-bold text-blue-800 mb-3">What is CLO3D and its Relevance?</h3>
-                <p class="text-blue-700 text-base leading-relaxed font-normal">
-                    <strong>CLO3D</strong> is a leading 3D fashion design software that enables designers to create realistic 3D garment simulations. It uses advanced cloth physics to accurately represent how fabric drapes, fits, and moves.
-                    <br><br>
-                    <strong>Relevance to Meru:</strong> CLO3D-like capabilities are crucial for Meru's core functionality:
-                    <ul class="list-disc list-inside mt-2 space-y-1">
-                        <li><strong>Realistic Virtual Try-On:</strong> Ensures garments on user's 3D models look authentic.</li>
-                        <li><strong>Accurate Fit Simulation:</strong> Helps users visualize how clothes will fit their unique body dimensions.</li>
-                        <li><strong>Efficient Digital Prototyping:</strong> Allows brands to quickly convert physical garments into digital assets for the app.</li>
-                    </ul>
-                    Achieving a <strong>real-time, client-side</strong> simulation similar to CLO3D's fidelity is a significant technical challenge, which is why a hybrid client-server approach is recommended for Meru.
-                </p>
-            </div>
-
-            <section id="report-overview" class="section-fade-in text-center mb-20"> <!-- More margin-bottom -->
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 sm:text-4xl">Technical Verdict</h2>
-                <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed font-normal">An assessment of the core 3D technologies required. The proposed application is ambitious but achievable through a strategic client-server architecture.</p>
-                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10"> <!-- Larger gap -->
-                    <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-lg"> <!-- More padding, larger shadow -->
-                        <h3 class="text-xl font-bold text-stone-900">Overall Feasibility</h3>
-                        <p class="mt-3 text-3xl sm:text-4xl font-extrabold text-teal-600">Challenging</p> <!-- Adjusted font size for responsiveness -->
-                        <p class="mt-2 text-stone-600 text-base font-normal">but feasible with a dedicated, expert team.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-lg">
-                        <h3 class="text-xl font-bold text-stone-900">Key Strategy</h3>
-                        <p class="mt-3 text-4xl font-extrabold text-slate-600">Client-Server Model</p>
-                        <p class="mt-2 text-stone-600 text-base font-normal">Offload heavy processing to a powerful backend.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-lg">
-                        <h3 class="text-xl font-bold text-stone-900">Primary Hurdle</h3>
-                        <p class="mt-3 text-4xl font-extrabold text-amber-600">Client-Side Preview</p>
-                        <p class="mt-2 text-stone-600 text-base font-normal">Real-time cloth simulation on mobile is the main challenge.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="report-pipeline" class="section-fade-in mb-20"> <!-- More margin-bottom -->
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 sm:text-4xl">The Core Technical Pipeline</h2>
-                    <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed font-normal">From user scan to final render, the process is split between the user's device (client) and your backend (server). All details are displayed below.</p>
-                </div>
-                <div class="relative">
-                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-stone-300 -translate-y-1/2"></div>
-                    <div class="relative grid grid-cols-1 md:grid-cols-3 gap-10"> <!-- Larger gap -->
-                        <div class="pipeline-step">
-                            <div class="flex justify-center items-center">
-                                <span class="absolute md:hidden top-full left-1/2 w-0.5 h-8 bg-stone-300 -translate-x-1/2"></span>
-                                <div class="relative z-10 w-16 h-16 bg-white border-2 border-slate-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-md">1</div>
-                            </div>
-                            <h3 class="mt-5 text-xl font-semibold">Human Photogrammetry</h3>
-                            <div class="mt-3 flex justify-center items-center gap-2 font-medium text-stone-600">
-                                <span class="text-2xl" title="Server-side processing">☁️</span>
-                                <span>Server-Side</span>
-                            </div>
-                            <div class="details p-5 mt-5 bg-stone-100 rounded-lg text-left border border-stone-200 shadow-sm"> <!-- More padding, subtle border/shadow -->
-                                <h4 class="font-bold text-stone-800">Purpose</h4>
-                                <p class="text-base text-stone-700 mb-2 font-normal">Create an accurate 3D body model from user photos.</p>
-                                <h4 class="font-bold text-stone-800">Complexity: <span class="text-red-600 font-normal">High</span></h4>
-                                <p class="text-base text-stone-700 mb-2 font-normal">Requires guided data capture and robust SfM/MVS algorithms.</p>
-                                <h4 class="font-bold text-stone-800">Feasibility</h4>
-                                <p class="text-base text-stone-700 font-normal">Possible by uploading images for server-side processing with libraries like COLMAP.</p>
-                            </div>
-                        </div>
-                        <div class="pipeline-step">
-                            <div class="flex justify-center items-center">
-                                <span class="absolute md:hidden top-full left-1/2 w-0.5 h-8 bg-stone-300 -translate-x-1/2"></span>
-                                <div class="relative z-10 w-16 h-16 bg-white border-2 border-slate-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-md">2</div>
-                            </div>
-                            <h3 class="mt-5 text-xl font-semibold">AI-Assisted Retopology</h3>
-                            <div class="mt-3 flex justify-center items-center gap-2 font-medium text-stone-600">
-                                <span class="text-2xl" title="Server-side processing">☁️</span>
-                                <span>Server-Side</span>
-                            </div>
-                            <div class="details p-5 mt-5 bg-stone-100 rounded-lg text-left border border-stone-200 shadow-sm">
-                                <h4 class="font-bold text-stone-800">Purpose</h4>
-                                <p class="text-base text-stone-700 mb-2 font-normal">Convert the raw scan into a clean, optimized mesh for simulation.</p>
-                                <h4 class="font-bold text-stone-800">Complexity: <span class="text-red-600 font-normal">Very High</span></h4>
-                                <p class="text-base text-stone-700 mb-2 font-normal">Automating this for diverse body shapes is a significant AI challenge.</p>
-                                <h4 class="font-bold text-stone-800">Feasibility</h4>
-                                <p class="text-base text-stone-700 font-normal">Achievable on the server. AI significantly streamlines the process.</p>
-                            </div>
-                        </div>
-                        <div class="pipeline-step">
-                            <div class="flex justify-center items-center">
-                                <div class="relative z-10 w-16 h-16 bg-white border-2 border-slate-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-md">3</div>
-                            </div>
-                            <h3 class="mt-5 text-xl font-semibold">Garment Simulation</h3>
-                            <div class="mt-3 flex justify-center items-center gap-2 font-medium text-stone-600">
-                                <span class="text-2xl" title="Client-side processing">📱</span>
-                                <span>Client</span> & <span class="text-2xl" title="Server-side processing">☁️</span> <span>Server</span>
-                            </div>
-                            <div class="details p-5 mt-5 bg-stone-100 rounded-lg text-left border border-stone-200 shadow-sm">
-                                <h4 class="font-bold text-stone-800">Purpose</h4>
-                                <p class="text-base text-stone-700 mb-2 font-normal">Drape and render 3D clothing on the user's body model.</p>
-                                <h4 class="font-bold text-stone-800">Interactive Preview (Client)</h4>
-                                <p class="text-base text-stone-700 mb-2 font-normal">Challenging but feasible on high-end devices. Requires a lightweight, real-time cloth physics engine.</p>
-                                <h4 class="font-bold text-stone-800">High-Quality Render (Server)</h4>
-                                <p class="text-base text-stone-700 font-normal">Highly feasible. A robust engine renders high-fidelity images/videos on the server.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="report-challenges" class="section-fade-in mb-20"> <!-- More margin-bottom -->
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 sm:text-4xl">Client-Side Simulation: Key Challenges</h2>
-                    <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed font-normal">Replicating even minimum CLO3D features for the live preview is a significant undertaking. Here are the primary technical hurdles to overcome, with all details displayed.</p>
-                </div>
-                <div class="max-w-3xl mx-auto space-y-6"> <!-- Larger space -->
-                    <div class="challenge-item bg-white border border-stone-200 rounded-xl shadow-md overflow-hidden"> <!-- More rounded, larger shadow -->
-                        <button class="w-full text-left p-5 flex justify-between items-center focus:outline-none"> <!-- More padding -->
-                            <span class="font-bold text-lg text-stone-900">Lightweight Physics Model</span> <!-- Bolder, larger text -->
-                            <span class="transform transition-transform duration-300 text-2xl text-stone-400" style="display: none;">+</span>
-                        </button>
-                        <div class="challenge-details p-5 border-t border-stone-200 bg-stone-50"> <!-- More padding -->
-                            <p class="text-base text-stone-700 leading-relaxed font-normal">Developing or integrating a simplified physics model (e.g., mass-spring system) that prioritizes speed over absolute accuracy. It must be stable and performant on mobile hardware.</p>
-                        </div>
-                    </div>
-                    <div class="challenge-item bg-white border border-stone-200 rounded-xl shadow-md overflow-hidden">
-                        <button class="w-full text-left p-5 flex justify-between items-center focus:outline-none">
-                            <span class="font-bold text-lg text-stone-900">Real-Time Collision Detection</span>
-                            <span class="transform transition-transform duration-300 text-2xl text-stone-400" style="display: none;">+</span>
-                        </button>
-                        <div class="challenge-details p-5 border-t border-stone-200 bg-stone-50">
-                            <p class="text-base text-stone-700 leading-relaxed font-normal">Efficiently detecting collisions between the garment mesh and the body mesh in real-time. Simplified self-collision (fabric on fabric) is even harder and may need to be faked for the preview.</p>
-                        </div>
-                    </div>
-                    <div class="challenge-item bg-white border border-stone-200 rounded-xl shadow-md overflow-hidden">
-                        <button class="w-full text-left p-5 flex justify-between items-center focus:outline-none">
-                            <span class="font-bold text-lg text-stone-900">Performance Optimization</span>
-                            <span class="transform transition-transform duration-300 text-2xl text-stone-400" style="display: none;">+</span>
-                        </button>
-                        <div class="challenge-details p-5 border-t border-stone-200 bg-stone-50">
-                            <p class="text-base text-stone-700 leading-relaxed font-normal">Aggressive optimization is paramount. This includes using level-of-detail (LOD) for meshes, simplifying physics calculations, and leveraging GPU acceleration wherever possible to achieve acceptable frame rates.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="report-rendering" class="section-fade-in">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 sm:text-4xl">Server-Side Rendering Options</h2>
-                    <p class="mt-4 max-w-3xl mx-auto text-lg text-stone-600 leading-relaxed font-normal">For high-quality results, the server can use different rendering methods. Here's a comparison of the trade-offs between Quality, Speed, and Hardware Requirements for each option.</p>
-                </div>
-                <div class="chart-container mb-10"> <!-- More margin-bottom -->
-                    <canvas id="renderingChart"></canvas>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> <!-- Larger gap -->
-                    <!-- Basic PBR Card -->
-                    <div class="render-option-card">
-                        <h3 class="text-emerald-600">Basic PBR</h3> <!-- Changed to emerald for consistency -->
-                        <p class="text-base font-normal"><strong>Quality:</strong> Good, realistic lighting and material properties.</p>
-                        <p class="text-base font-normal"><strong>Speed:</strong> Fast (seconds).</p>
-                        <p class="text-base font-normal"><strong>Requirements:</strong> Low to Moderate.</p>
-                        <p class="text-stone-700 mt-3 text-sm leading-relaxed font-normal">Good, realistic lighting and material properties. Renders are fast (seconds), making it a great baseline. Ideal for quick previews where speed is critical.</p>
-                    </div>
-                    <!-- Advanced RT (Hybrid) Card -->
-                    <div class="render-option-card">
-                        <h3 class="text-blue-600">Advanced RT (Hybrid)</h3> <!-- Changed to blue for consistency -->
-                        <p class="text-base font-normal"><strong>Quality:</strong> Excellent with realistic global illumination and soft shadows.</p>
-                        <p class="text-base font-normal"><strong>Speed:</strong> Moderate (tens of seconds to minutes).</p>
-                        <p class="text-base font-normal"><strong>Requirements:</strong> High (e.g., RTX series GPUs).</p>
-                        <p class="text-stone-700 mt-3 text-sm leading-relaxed font-normal">Excellent quality with realistic global illumination and soft shadows. Requires high-end GPUs (e.g., RTX series). Renders take tens of seconds to minutes.</p>
-                        <div class="recommendation font-normal">
-                            <span class="font-bold">Recommendation:</span> This is the most efficient method for your use case, balancing photorealistic quality with acceptable server processing time.
-                        </div>
-                    </div>
-                    <!-- Full Path Tracing Card -->
-                    <div class="render-option-card">
-                        <h3 class="text-amber-600">Full Path Tracing</h3>
-                        <p class="text-base font-normal"><strong>Quality:</strong> Absolute photorealistic quality, the gold standard.</p>
-                        <p class="text-base font-normal"><strong>Speed:</strong> Very Slow (minutes to hours per image).</p>
-                        <p class="text-base font-normal"><strong>Requirements:</strong> Very High (powerful GPUs or render farms).</p>
-                        <p class="text-stone-700 mt-3 text-sm leading-relaxed font-normal">Absolute photorealistic quality, the gold standard. Extremely slow (minutes to hours per image) and requires powerful GPUs or render farms. Best for hero marketing shots.</p>
-                    </div>
-                </div>
-            </section>
-
-        </section>
-
-        <!-- New Section: Contact Us -->
         <section id="contact-us" class="section-card p-6 sm:p-8 lg:p-12">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">Interested in this project? Contact Us!</h2>
-
-            <p class="text-lg text-gray-700 mb-8 leading-relaxed text-center max-w-2xl mx-auto">
-                We're always looking for passionate individuals and organizations to join us on this exciting journey. Fill out the form below, and we'll get in touch!
-            </p>
-
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed text-center max-w-2xl mx-auto">We're always looking for passionate individuals and organizations to join us on this exciting journey. Fill out the form below, and we'll get in touch!</p>
             <form id="contactForm" class="max-w-xl mx-auto space-y-6">
                 <div>
                     <label for="yourName" class="block text-lg font-medium text-gray-700 mb-2">Your Name <span class="text-red-500">*</span></label>
-                    <input type="text" id="yourName" name="yourName" required
-                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-base transition-colors duration-200">
+                    <input type="text" id="yourName" name="yourName" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-base transition-colors duration-200">
                 </div>
-
                 <div>
                     <label for="roleOfInterest" class="block text-lg font-medium text-gray-700 mb-2">Your Role of Interest <span class="text-red-500">*</span></label>
-                    <select id="roleOfInterest" name="roleOfInterest" required
-                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base rounded-md shadow-sm transition-colors duration-200">
+                    <select id="roleOfInterest" name="roleOfInterest" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-base rounded-md shadow-sm transition-colors duration-200">
                         <option value="" disabled selected>Select a role</option>
                         <option value="investor">Investor</option>
                         <option value="developer">Developer</option>
@@ -1160,355 +346,40 @@
                         <option value="others">Others</option>
                     </select>
                 </div>
-
                 <div id="otherRoleField" class="hidden">
                     <label for="otherRoleDescription" class="block text-lg font-medium text-gray-700 mb-2">Describe your role of interest <span class="text-red-500">*</span></label>
-                    <input type="text" id="otherRoleDescription" name="otherRoleDescription"
-                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-base transition-colors duration-200">
+                    <input type="text" id="otherRoleDescription" name="otherRoleDescription" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-base transition-colors duration-200">
                 </div>
-
                 <div>
                     <label for="additionalRemarks" class="block text-lg font-medium text-gray-700 mb-2">Additional Remarks (Optional)</label>
-                    <textarea id="additionalRemarks" name="additionalRemarks" rows="4"
-                              class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-base transition-colors duration-200"></textarea>
+                    <textarea id="additionalRemarks" name="additionalRemarks" rows="4" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-base transition-colors duration-200"></textarea>
                 </div>
-
-                <button type="submit"
-                        class="w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
-                    Submit
-                </button>
+                <button type="submit" class="w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">Submit</button>
             </form>
         </section>
-
     </main>
 
-    <!-- Confirmation Modal -->
     <div id="confirmationModal" class="modal-overlay">
         <div class="modal-content">
             <h3 class="text-2xl font-bold text-gray-900 mb-4">Confirm Submission</h3>
-            <p class="text-lg text-gray-700 mb-6">
-                By pressing "Confirm & Send Email", you agree to us contacting you if needed regarding your interest in the Meru project.
-            </p>
+            <p class="text-lg text-gray-700 mb-6">By pressing "Confirm & Send Email", you agree to us contacting you if needed regarding your interest in the Meru project.</p>
             <div class="flex justify-center space-x-4">
-                <button id="cancelSubmission"
-                        class="py-2 px-5 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
-                    Cancel
-                </button>
-                <button id="confirmAndSendEmail"
-                        class="py-2 px-5 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
-                    Confirm & Send Email
-                </button>
+                <button id="cancelSubmission" class="py-2 px-5 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">Cancel</button>
+                <button id="confirmAndSendEmail" class="py-2 px-5 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">Confirm & Send Email</button>
             </div>
         </div>
     </div>
 
-    <!-- Thank You Modal -->
     <div id="thankYouModal" class="modal-overlay">
         <div class="modal-content">
             <h3 class="text-2xl font-bold text-gray-900 mb-4">Thank You!</h3>
-            <p class="text-lg text-gray-700 mb-6">
-                Thank you for your interest in Meru! We will get back to you shortly.
-            </p>
-            <button id="closeThankYouModal"
-                    class="py-2 px-5 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
-                Close
-            </button>
+            <p class="text-lg text-gray-700 mb-6">Thank you for your interest in Meru! We will get back to you shortly.</p>
+            <button id="closeThankYouModal" class="py-2 px-5 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">Close</button>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Market Trend Chart
-            const years = ['2019', '2021', '2024', '2029'];
-            const marketValues = [536.79, 663.80, 801.60, 1232.40]; // in billions USD
-
-            const ctx = document.getElementById('marketTrendChart').getContext('2d');
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{
-                        label: 'Global Online Fashion Market Value (USD Billion)',
-                        data: marketValues,
-                        borderColor: '#2563eb', /* Blue 600 */
-                        backgroundColor: (context) => {
-                            const chart = context.chart;
-                            const {ctx, chartArea} = chart;
-                            if (!chartArea) {
-                                return null;
-                            }
-                            const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-                            gradient.addColorStop(0, 'rgba(59, 130, 246, 0.1)'); /* Blue 500 with 0.1 opacity */
-                            gradient.addColorStop(0.75, 'rgba(59, 130, 246, 0.1)');
-                            gradient.addColorStop(0.75, 'rgba(16, 185, 129, 0.1)'); /* Emerald 500 with 0.1 opacity */
-                            gradient.addColorStop(1, 'rgba(16, 185, 129, 0.1)');
-                            return gradient;
-                        },
-                        tension: 0.4,
-                        fill: true,
-                        pointBackgroundColor: '#1d4ed8', /* Blue 700 */
-                        pointBorderColor: '#fff',
-                        pointHoverRadius: 7, /* Slightly larger hover radius */
-                        pointHoverBackgroundColor: '#1d4ed8',
-                        pointHoverBorderColor: '#fff',
-                        segment: {
-                            borderColor: (ctx) => {
-                                if (ctx.p0DataIndex >= 2) {
-                                    return '#059669'; /* Emerald 600 for forecast line */
-                                }
-                                return '#2563eb'; /* Blue 600 for historical line */
-                            },
-                            borderDash: (ctx) => {
-                                if (ctx.p0DataIndex >= 2) {
-                                    return [6, 6]; /* Slightly larger dashes */
-                                }
-                                return [];
-                            },
-                            backgroundColor: (ctx) => {
-                                if (ctx.p0DataIndex >= 2) {
-                                    return 'rgba(16, 185, 129, 0.1)';
-                                }
-                                return 'rgba(59, 130, 246, 0.1)';
-                            }
-                        }
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Global Online Fashion Market Growth',
-                            font: {
-                                size: 20, /* Larger title font */
-                                weight: 'bold',
-                                family: 'Inter, sans-serif'
-                            },
-                            color: '#1e293b' /* Slate 900 */
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom', /* Moved legend to bottom for cleaner look */
-                            labels: {
-                                font: {
-                                    family: 'Inter',
-                                    size: 14
-                                },
-                                color: '#475569' /* Slate 700 */
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Year',
-                                font: {
-                                    family: 'Inter',
-                                    size: 14
-                                },
-                                color: '#475569'
-                            },
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                font: {
-                                    family: 'Inter',
-                                    size: 12
-                                },
-                                color: '#475569'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Market Value (USD Billion)',
-                                font: {
-                                    family: 'Inter',
-                                    size: 14
-                                },
-                                color: '#475569'
-                            },
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return '$' + value + 'B';
-                                },
-                                font: {
-                                    family: 'Inter',
-                                    size: 12
-                                },
-                                color: '#475569'
-                            },
-                            grid: {
-                                color: '#e2e8f0' /* Lighter grid lines */
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Feasibility Report Radar Chart
-            const renderingData = [
-                {
-                    name: "Basic PBR",
-                    quality: 3,
-                    speed: 5,
-                    requirements: 2,
-                    description: "Good, realistic lighting and material properties. Renders are fast (seconds), making it a great baseline. Ideal for quick previews where speed is critical.",
-                    recommendation: ""
-                },
-                {
-                    name: "Advanced RT (Hybrid)",
-                    quality: 4,
-                    speed: 3,
-                    requirements: 4,
-                    description: "Excellent quality with realistic global illumination and soft shadows. Requires high-end GPUs (e.g., RTX series). Renders take tens of seconds to minutes.",
-                    recommendation: "This is the most efficient method for your use case, balancing photorealistic quality with acceptable server processing time."
-                },
-                {
-                    name: "Full Path Tracing",
-                    quality: 5,
-                    speed: 1,
-                    requirements: 5,
-                    description: "Absolute photorealistic quality, the gold standard. Extremely slow (minutes to hours per image) and requires powerful GPUs or render farms. Best for hero marketing shots.",
-                    recommendation: ""
-                }
-            ];
-
-            const radarCtx = document.getElementById('renderingChart').getContext('2d');
-            new Chart(radarCtx, {
-                type: 'radar',
-                data: {
-                    labels: ['Quality', 'Speed', ['Low', 'Requirements']], // Changed label to array for multi-line
-                    datasets: renderingData.map((d, i) => ({
-                        label: d.name,
-                        data: [d.quality, d.speed, 6 - d.requirements], // Invert requirements for "Low Requirements" axis
-                        fill: true,
-                        backgroundColor: i === 0 ? 'rgba(5, 150, 105, 0.15)' : (i === 1 ? 'rgba(37, 99, 235, 0.15)' : 'rgba(251, 191, 36, 0.15)'), /* Emerald, Blue, Amber with 0.15 opacity */
-                        borderColor: i === 0 ? 'rgb(5, 150, 105)' : (i === 1 ? 'rgb(37, 99, 235)' : 'rgb(251, 191, 36)'),
-                        pointBackgroundColor: i === 0 ? 'rgb(5, 150, 105)' : (i === 1 ? 'rgb(37, 99, 235)' : 'rgb(251, 191, 36)'),
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: i === 0 ? 'rgb(5, 150, 105)' : (i === 1 ? 'rgb(37, 99, 235)' : 'rgb(251, 191, 36)'),
-                        hidden: false
-                    }))
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    elements: {
-                        line: {
-                            borderWidth: 3
-                        },
-                        point: {
-                            radius: 5, /* Larger points */
-                            hoverRadius: 7
-                        }
-                    },
-                    scales: {
-                        r: {
-                            angleLines: {
-                                display: false
-                            },
-                            suggestedMin: 0,
-                            suggestedMax: 5,
-                            pointLabels: {
-                                font: {
-                                    size: 15, /* Larger point labels */
-                                    weight: 'bold',
-                                    family: 'Inter, sans-serif'
-                                },
-                                color: '#334155' /* Slate 700 */
-                            },
-                            ticks: {
-                                stepSize: 1,
-                                display: false
-                            },
-                            grid: {
-                                color: '#e2e8f0' /* Lighter grid lines */
-                            },
-                            axisLabels: {
-                                font: {
-                                    family: 'Inter, sans-serif'
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                font: {
-                                    family: 'Inter',
-                                    size: 14
-                                },
-                                color: '#475569',
-                                usePointStyle: true /* Ensure color boxes are displayed */
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Revenue Share Charts
-            const revenueData = {
-                'revenueChart1': { label: 'Direct Sales', percentage: 60, color: '#059669' }, // Emerald 600
-                'revenueChart2': { label: 'Advertisements', percentage: 20, color: '#2563eb' }, // Blue 600
-                'revenueChart3': { label: 'Subscriptions', percentage: 15, color: '#f97316' }, // Orange 500
-                'revenueChart4': { label: 'Partnerships', percentage: 5, color: '#dc2626' } // Red 600
-            };
-
-            for (const chartId in revenueData) {
-                const data = revenueData[chartId];
-                const chartCtx = document.getElementById(chartId).getContext('2d');
-                new Chart(chartCtx, {
-                    type: 'pie',
-                    data: {
-                        labels: [data.label, 'Other Revenue'],
-                        datasets: [{
-                            data: [data.percentage, 100 - data.percentage],
-                            backgroundColor: [data.color, '#e2e8f0'], // Use light gray for 'Other'
-                            borderColor: '#ffffff',
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false // Hide legend as percentage is shown in title/label
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.label || '';
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        if (context.parsed !== null) {
-                                            label += context.parsed + '%';
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
-                        },
-                        elements: {
-                            arc: {
-                                borderWidth: 0 // No border for pie slices
-                            }
-                        }
-                    }
-                });
-            }
-
-            // Contact Form Logic
             const contactForm = document.getElementById('contactForm');
             const roleOfInterestSelect = document.getElementById('roleOfInterest');
             const otherRoleField = document.getElementById('otherRoleField');
@@ -1520,12 +391,10 @@
             const thankYouModal = document.getElementById('thankYouModal');
             const closeThankYouModalButton = document.getElementById('closeThankYouModal');
 
-            // Hamburger menu elements
             const hamburgerTrigger = document.getElementById('hamburger-trigger');
             const hamburgerMenu = document.getElementById('hamburger-menu');
             const menuOverlay = document.getElementById('menu-overlay');
             const hamburgerMenuLinks = document.querySelectorAll('#hamburger-menu a');
-
 
             roleOfInterestSelect.addEventListener('change', (event) => {
                 if (event.target.value === 'others') {
@@ -1538,30 +407,14 @@
             });
 
             contactForm.addEventListener('submit', (event) => {
-                event.preventDefault(); // Prevent default form submission
-
-                // Simple validation
-                if (!yourNameInput.value.trim()) {
-                    // Using a custom modal/message box instead of alert()
-                    showCustomMessage('Please enter your name.', 'Error');
-                    return;
-                }
-                if (roleOfInterestSelect.value === '') {
-                    showCustomMessage('Please select your role of interest.', 'Error');
-                    return;
-                }
-                if (roleOfInterestSelect.value === 'others' && !otherRoleDescriptionInput.value.trim()) {
-                    showCustomMessage('Please describe your role of interest.', 'Error');
-                    return;
-                }
-
-                // Show confirmation modal
+                event.preventDefault();
+                if (!yourNameInput.value.trim()) { showCustomMessage('Please enter your name.', 'Error'); return; }
+                if (roleOfInterestSelect.value === '') { showCustomMessage('Please select your role of interest.', 'Error'); return; }
+                if (roleOfInterestSelect.value === 'others' && !otherRoleDescriptionInput.value.trim()) { showCustomMessage('Please describe your role of interest.', 'Error'); return; }
                 confirmationModal.classList.add('show');
             });
 
-            cancelSubmissionButton.addEventListener('click', () => {
-                confirmationModal.classList.remove('show');
-            });
+            cancelSubmissionButton.addEventListener('click', () => { confirmationModal.classList.remove('show'); });
 
             confirmAndSendEmailButton.addEventListener('click', () => {
                 const yourName = yourNameInput.value.trim();
@@ -1571,84 +424,47 @@
 
                 let body = `Name: ${yourName}\n`;
                 body += `Role of Interest: ${roleOfInterest}`;
-                if (roleOfInterest === 'others' && otherRoleDescription) {
-                    body += ` (${otherRoleDescription})`;
-                }
+                if (roleOfInterest === 'others' && otherRoleDescription) { body += ` (${otherRoleDescription})`; }
                 body += `\n\nAdditional Remarks:\n${additionalRemarks}`;
 
                 const mailtoLink = `mailto:kailiangyip@hotmail.com?subject=${encodeURIComponent("I'm interested to contribute to Meru")}&body=${encodeURIComponent(body)}`;
-
                 window.location.href = mailtoLink;
 
-                // Hide modal after initiating email
                 confirmationModal.classList.remove('show');
-
-                // Show acknowledgement message
                 thankYouModal.classList.add('show');
-
-                // Optionally clear form after submission
                 contactForm.reset();
-                otherRoleField.classList.add('hidden'); // Hide the 'other' field
+                otherRoleField.classList.add('hidden');
             });
 
-            closeThankYouModalButton.addEventListener('click', () => {
-                thankYouModal.classList.remove('show');
-            });
+            closeThankYouModalButton.addEventListener('click', () => { thankYouModal.classList.remove('show'); });
 
-            // Function to show custom message (replacing alert)
             function showCustomMessage(message, title = 'Message') {
                 const existingModal = document.getElementById('customMessageModal');
-                if (existingModal) {
-                    existingModal.remove();
-                }
-
-                const modalHtml = `
-                    <div id="customMessageModal" class="modal-overlay show">
-                        <div class="modal-content">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">${title}</h3>
-                            <p class="text-lg text-gray-700 mb-6">${message}</p>
-                            <button id="closeCustomMessageModal"
-                                    class="py-2 px-5 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
-                                OK
-                            </button>
-                        </div>
-                    </div>
-                `;
+                if (existingModal) { existingModal.remove(); }
+                const modalHtml = `<div id="customMessageModal" class="modal-overlay show"><div class="modal-content"><h3 class="text-2xl font-bold text-gray-900 mb-4">${title}</h3><p class="text-lg text-gray-700 mb-6">${message}</p><button id="closeCustomMessageModal" class="py-2 px-5 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">OK</button></div></div>`;
                 document.body.insertAdjacentHTML('beforeend', modalHtml);
-
-                document.getElementById('closeCustomMessageModal').addEventListener('click', () => {
-                    document.getElementById('customMessageModal').classList.remove('show');
-                });
+                document.getElementById('closeCustomMessageModal').addEventListener('click', () => { document.getElementById('customMessageModal').classList.remove('show'); });
             }
 
-            // Hamburger menu toggle logic
             hamburgerTrigger.addEventListener('click', () => {
                 hamburgerMenu.classList.toggle('open');
                 menuOverlay.classList.toggle('show');
             });
-
-            // Close menu when clicking outside or on a link
             menuOverlay.addEventListener('click', () => {
                 hamburgerMenu.classList.remove('open');
                 menuOverlay.classList.remove('show');
             });
-
             hamburgerMenuLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
-                    // Smooth scroll to section
                     event.preventDefault();
                     const targetId = event.target.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                    // Close menu after clicking a link
+                    if (targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
                     hamburgerMenu.classList.remove('open');
                     menuOverlay.classList.remove('show');
                 });
             });
         });
     </script>
-
 </body>
 </html>
